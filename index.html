@@ -21,7 +21,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Sticky Top Navigation Bar --- */
+        /* --- Navigation --- */
         nav {
             height: var(--nav-height);
             width: 100%;
@@ -47,18 +47,10 @@
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: 1px;
-            z-index: 1001;
         }
-        .nav-left img {
-            height: 35px;
-            width: auto;
-        }
+        .nav-left img { height: 35px; width: auto; }
 
-        /* --- Desktop Links --- */
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
+        .nav-links { display: flex; gap: 25px; }
         .nav-links a {
             text-decoration: none;
             color: #888;
@@ -70,49 +62,21 @@
             padding-bottom: 4px;
             border-bottom: 2px solid transparent; 
         }
-        .nav-links a:hover {
-            color: var(--orbis-cyan);
-        }
-        .nav-links a.active {
-            color: white;
-            border-bottom: 2px solid var(--orbis-cyan);
-        }
+        .nav-links a:hover { color: var(--orbis-cyan); }
+        .nav-links a.active { color: white; border-bottom: 2px solid var(--orbis-cyan); }
 
-        /* --- Hamburger Menu Icon --- */
-        .hamburger {
-            display: none; 
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 10px;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: white;
-            transition: 0.3s;
-        }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+        .hamburger span { width: 25px; height: 2px; background-color: white; transition: 0.3s; }
 
-        /* --- Mobile Phone Logic --- */
         @media (max-width: 768px) {
             .hamburger { display: flex; }
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%; 
-                height: 100vh;
-                width: 75%;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 40px;
-                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
+                background: rgba(10, 10, 10, 0.98); flex-direction: column;
+                justify-content: center; align-items: center; gap: 40px; transition: 0.4s;
                 border-left: 1px solid #222;
             }
             .nav-links.mobile-active { right: 0; }
-            .nav-links a { font-size: 1.1rem; }
             .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
             .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -130,13 +94,7 @@
             margin-bottom: 25px; 
             filter: drop-shadow(0 0 20px rgba(0, 174, 239, 0.25)); 
         }
-        .hero-tagline {
-            letter-spacing: 6px; 
-            color: #aaa; 
-            font-weight: 300;
-            font-size: 0.9rem;
-            margin: 0;
-        }
+        .hero-tagline { letter-spacing: 6px; color: #aaa; font-weight: 300; font-size: 0.9rem; margin: 0; }
         
         /* --- Stats Bar --- */
         .stats-bar {
@@ -158,115 +116,69 @@
         .section-title { font-size: 2.2rem; margin-bottom: 50px; text-align: left; font-weight: 700; }
         .section-title span { color: var(--orbis-cyan); }
 
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
+        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .work-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #222;
-            display: flex;
-            flex-direction: column;
+            background: var(--card-bg); border-radius: 18px; overflow: hidden;
+            transition: 0.4s; border: 1px solid #222; display: flex; flex-direction: column;
         }
-        .work-card:hover { transform: translateY(-12px); border-color: var(--orbis-cyan); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .work-thumb { width: 100%; height: 220px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .work-card:hover { transform: translateY(-12px); border-color: var(--orbis-cyan); }
+        .work-thumb { width: 100%; height: 220px; background: #1a1a1a; }
         .work-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .work-info h3 { margin: 0; font-size: 1.5rem; letter-spacing: 0.5px; }
-        .work-info p { color: #888; font-size: 0.95rem; margin: 12px 0 20px 0; }
-        
-        .work-footer {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-        .work-stat { color: var(--orbis-cyan); font-weight: 700; border: 1px solid var(--orbis-cyan); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; letter-spacing: 1px; }
+        .work-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+        .work-stat { color: var(--orbis-cyan); font-weight: 700; border: 1px solid var(--orbis-cyan); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; }
 
         .btn-small {
-            text-decoration: none;
-            color: white;
-            background: #222;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: background 0.3s;
-            border: 1px solid #333;
-            white-space: nowrap;
+            text-decoration: none; color: white; background: #222; padding: 6px 14px;
+            border-radius: 6px; font-size: 0.8rem; border: 1px solid #333; transition: 0.3s;
         }
-        .btn-small:hover { background: var(--orbis-cyan); color: black; border-color: var(--orbis-cyan); }
+        .btn-small:hover { background: var(--orbis-cyan); color: black; }
 
-        /* --- Upcoming Pipeline Styling --- */
+        /* --- Pipeline --- */
         .pipeline-container {
-            text-align: center;
-            margin-top: 40px;
-            background: #0c0c0c;
-            padding: 60px 40px;
-            border-radius: 30px;
-            border: 1px solid #1a1a1a;
+            text-align: center; background: #0c0c0c; padding: 60px 40px;
+            border-radius: 30px; border: 1px solid #1a1a1a;
         }
         .pipeline-card {
-            background: #111;
-            border: 1px solid #222;
-            padding: 25px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-align: left;
-            margin-top: 20px;
-            transition: 0.3s;
+            background: #111; border: 1px solid #222; padding: 25px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: space-between; text-align: left;
+            margin-top: 20px; transition: 0.3s;
         }
-        .pipeline-card:hover { border-color: var(--orbis-cyan); }
-        .pipeline-info h4 { margin: 0; color: white; font-size: 1.2rem; }
-        .pipeline-info p { margin: 5px 0 0 0; color: #777; font-size: 0.9rem; }
-        .status-tag {
-            background: rgba(0, 174, 239, 0.1);
-            color: var(--orbis-cyan);
-            padding: 6px 15px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
+        .status-tag { background: rgba(0, 174, 239, 0.1); color: var(--orbis-cyan); padding: 6px 15px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; }
 
-        /* --- About Section --- */
-        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-text h3 { color: var(--orbis-cyan); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; }
-        .about-text p { color: #aaa; font-size: 1.1rem; margin-bottom: 25px; }
-        .about-image {
-            background: linear-gradient(45deg, #111, #001a33);
-            height: 400px;
-            border-radius: 20px;
-            border: 1px solid #222;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        /* --- Footer (Legal Thing) --- */
+        footer {
+            background: #080808;
+            border-top: 1px solid #1a1a1a;
+            padding: 80px 5% 40px 5%;
+            margin-top: 50px;
         }
-        .about-image img { width: 60%; filter: drop-shadow(0 0 15px rgba(0, 174, 239, 0.3)); }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background: var(--orbis-cyan);
-            color: black;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 8px;
-            margin-top: 25px;
-            transition: transform 0.2s, opacity 0.2s;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .footer-brand img { height: 40px; margin-bottom: 15px; }
+        .footer-brand p { color: #666; font-size: 0.9rem; max-width: 300px; }
+        .footer-col h4 {
+            color: white; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 25px;
+        }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #888; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--orbis-cyan); }
+        
+        .footer-bottom {
+            max-width: 1200px; margin: 60px auto 0 auto; padding-top: 30px;
+            border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between;
+            align-items: center; color: #444; font-size: 0.85rem;
+        }
 
         @media (max-width: 900px) {
-            .about-content { grid-template-columns: 1fr; }
-            .about-image { height: 300px; order: -1; }
-            .pipeline-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
         }
     </style>
 </head>
@@ -274,14 +186,11 @@
 
     <nav>
         <a href="#" class="nav-left">
-            <img src="Orbis_O_White.png" alt="Orbis Icon"> 
-            ORBIS STUDIOS
+            <img src="Orbis_O_White.png" alt="Orbis Icon"> ORBIS STUDIOS
         </a>
-
         <div class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
         </div>
-
         <div class="nav-links" id="nav-links">
             <a href="#" class="active">Home</a>
             <a href="#works">Our Work</a>
@@ -305,12 +214,10 @@
         <h2 class="section-title">Our <span>Top Projects</span></h2>
         <div class="works-grid">
             <div class="work-card">
-                <div class="work-thumb">
-                    <img src="GTIC.png" style="width: 100%; height: 100%; object-fit: cover;" alt="GTIC Icon">
-                </div>
+                <div class="work-thumb"><img src="GTIC.png" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="work-info">
                     <h3>Gorilla Tag Intermediate COMP</h3>
-                    <p>Welcome to GTIC! 🦍— A competitive Gorilla Tag league open to all ranks. Compete in seasons and climb the ranks! 🏆</p>
+                    <p>A competitive Gorilla Tag league open to all ranks. Compete in seasons and climb the ranks! 🏆</p>
                     <div class="work-footer">
                         <span class="work-stat">700 Members</span>
                         <div style="display: flex; gap: 8px;">
@@ -322,9 +229,7 @@
             </div>
 
             <div class="work-card">
-                <div class="work-thumb">
-                    <img src="NLG_Banner.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Next Level Gorillas Icon">
-                </div>
+                <div class="work-thumb"><img src="NLG_Banner.png" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="work-info">
                     <h3>Next Level Gorillas</h3>
                     <p>Taking the Gorilla Tag experience to the next level with advanced playstyles and a dedicated community.</p>
@@ -340,43 +245,59 @@
         </div>
     </div>
 
-    <div class="container" id="about">
-        <h2 class="section-title">Who <span>We Are</span></h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>The Studio</h3>
-                <p>Orbis Studios is a collective of developers dedicated to pushing the boundaries of social gaming through high-stakes competitive environments.</p>
-                <p>We build ecosystems where players can thrive, compete, and connect in the next generation of VR.</p>
-                <a href="mailto:contact@orbisstudios.com" class="btn">Contact Us</a>
-            </div>
-            <div class="about-image">
-                <img src="Orbis_O_White.png" alt="Orbis Studios Logo">
-            </div>
-        </div>
-    </div>
-
     <div class="container" id="pipeline">
         <div class="pipeline-container">
             <h2 class="section-title" style="text-align: center; display: block; margin-bottom: 20px;">Project <span>Pipeline</span></h2>
-            <p style="color: #888; max-width: 600px; margin: 0 auto 30px auto;">What we're currently building behind the scenes.</p>
-            
             <div class="pipeline-card">
                 <div class="pipeline-info">
                     <h4>GTIC Transactions</h4>
-                    <p>Automated transaction bot for managing team and league assets.</p>
+                    <p>Automated transaction bot for managing league assets.</p>
                 </div>
                 <span class="status-tag">In Development</span>
             </div>
-
-            <div class="pipeline-card">
-                <div class="pipeline-info">
-                    <h4>Orbis Studio Portal</h4>
-                    <p>A central hub for all Orbis-affiliated projects and competitive stats.</p>
-                </div>
-                <span class="status-tag">Planning</span>
-            </div>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="Orbis_White.png" alt="Orbis Studios">
+                <p>Building high-stakes competitive ecosystems and social gaming environments for the next generation of VR.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#pipeline">Game Acquisition</a></li>
+                    <li><a href="#works">League Hosting</a></li>
+                    <li><a href="#pipeline">Bot Development</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="mailto:contact@orbisstudios.com">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Bug Bounty Terms</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Orbis Studios &copy; 2026. All rights reserved.</p>
+            <p>Innovation in Orbit | Games | Contact</p>
+        </div>
+    </footer>
 
     <script>
         const hamburger = document.getElementById('hamburger');
