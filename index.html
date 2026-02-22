@@ -139,6 +139,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px; /* Added gap for multiple buttons */
         }
 
         .work-stat { color: var(--orbis-cyan); font-weight: 700; border: 1px solid var(--orbis-cyan); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; letter-spacing: 1px; }
@@ -153,6 +154,7 @@
             font-weight: 600;
             transition: background 0.3s;
             border: 1px solid #333;
+            white-space: nowrap;
         }
         .btn-small:hover {
             background: var(--orbis-cyan);
@@ -204,7 +206,7 @@
             <h2>140B+</h2>
             <p>Total Sessions</p>
         </div>
-        <div class="stat-item">
+        <div class="stat-item)
             <h2>12%</h2>
             <p>Platform DAU</p>
         </div>
@@ -214,19 +216,22 @@
         <h2 class="section-title">Our <span>Top Projects</span></h2>
         
         <div class="works-grid">
-<div class="work-card">
-    <div class="work-thumb" style="background: #1a1a1a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-        <img src="GTIC.png" style="width: 100%; height: 100%; object-fit: cover;" alt="GTIC Icon">
-    </div>
-    <div class="work-info">
-        <h3>Gorilla Tag Intermediate COMP</h3>
-        <p>Welcome to GTIC! 🦍— A competitive Gorilla Tag league open to all ranks. Compete in seasons, join a team, or climb the ranks in our thriving community! 🏆</p>
-        <div class="work-footer">
-            <span class="work-stat">700 Members</span>
-            <a href="https://discord.gg/hB4V4ywqxj" target="_blank" class="btn-small">Join Discord</a>
-        </div>
-    </div>
-</div>
+            <div class="work-card">
+                <div class="work-thumb" style="background: #1a1a1a; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    <img src="GTIC.png" style="width: 100%; height: 100%; object-fit: cover;" alt="GTIC Icon">
+                </div>
+                <div class="work-info">
+                    <h3>Gorilla Tag Intermediate COMP</h3>
+                    <p>Welcome to GTIC! 🦍— A competitive Gorilla Tag league open to all ranks. Compete in seasons, join a team, or climb the ranks in our thriving community! 🏆</p>
+                    <div class="work-footer">
+                        <span class="work-stat">700 Members</span>
+                        <div style="display: flex; gap: 8px;">
+                            <a href="#" target="_blank" class="btn-small">Website</a>
+                            <a href="https://discord.gg/hB4V4ywqxj" target="_blank" class="btn-small">Join Discord</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="work-card">
                 <div class="work-thumb">
