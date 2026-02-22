@@ -299,6 +299,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: 0.3s;
+            cursor: pointer;
         }
         .footer-col ul li a:hover { color: var(--orbis-cyan); }
         
@@ -317,6 +318,39 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
         }
+
+        /* --- PRIVACY POLICY MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+        }
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid var(--orbis-cyan);
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            color: #ccc;
+        }
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-modal:hover { color: white; }
+        .modal-content h2 { color: var(--orbis-cyan); }
+        .modal-content h3 { color: white; margin-top: 25px; }
     </style>
 </head>
 <body>
@@ -444,7 +478,7 @@
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a onclick="openPrivacy()">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -455,6 +489,27 @@
             </div>
         </div>
     </footer>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePrivacy()">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Last Updated: February 2026</p>
+            <p>Orbis Studios values your privacy. This policy explains how we handle data across our games and Discord bots.</p>
+            
+            <h3>1. Data Collection</h3>
+            <p>We collect Discord IDs and game-specific statistics to manage competitive rankings and automated league transactions.</p>
+            
+            <h3>2. Usage</h3>
+            <p>Your data is used strictly for league management, fair-play verification, and enhancing the competitive experience.</p>
+            
+            <h3>3. Security</h3>
+            <p>We do not sell your data. We use industry-standard encryption to protect all stored information.</p>
+            
+            <h3>4. Contact</h3>
+            <p>For data removal requests, contact <strong>contact@orbisstudios.com</strong>.</p>
+        </div>
+    </div>
 
     <script>
         const hamburger = document.getElementById('hamburger');
@@ -474,6 +529,20 @@
                 navLinks.classList.remove('mobile-active');
             });
         });
+
+        // MODAL LOGIC
+        function openPrivacy() {
+            document.getElementById('privacyModal').style.display = "block";
+        }
+        function closePrivacy() {
+            document.getElementById('privacyModal').style.display = "none";
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('privacyModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 </body>
