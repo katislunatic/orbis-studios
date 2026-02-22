@@ -47,11 +47,14 @@
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: 1px;
+            z-index: 1001;
         }
         .nav-left img {
             height: 35px;
             width: auto;
         }
+
+        /* --- Desktop Links --- */
         .nav-links {
             display: flex;
             gap: 25px;
@@ -72,6 +75,57 @@
             color: white;
             border-bottom: 2px solid var(--orbis-cyan);
             padding-bottom: 4px;
+        }
+
+        /* --- Hamburger Menu Icon --- */
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: white;
+            transition: 0.3s;
+        }
+
+        /* --- Mobile Phone Logic --- */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Start off-screen */
+                height: 100vh;
+                width: 75%;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border-left: 1px solid #222;
+            }
+
+            .nav-links.mobile-active {
+                right: 0; /* Slide in */
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            /* Turn hamburger into an X when open */
+            .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         }
 
         /* --- Hero Section --- */
@@ -223,7 +277,14 @@
             <img src="Orbis_O_White.png" alt="Orbis Icon"> 
             ORBIS STUDIOS
         </a>
-        <div class="nav-links">
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links" id="nav-links">
             <a href="#" class="active">Home</a>
             <a href="#works">Our Work</a>
             <a href="#about">About Us</a>
@@ -313,6 +374,26 @@
             <a href="mailto:contact@orbisstudios.com" class="btn" id="contact">TALK TO US</a>
         </div>
     </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            // Toggles the hamburger animation
+            hamburger.classList.toggle('open');
+            // Toggles the menu sliding in
+            navLinks.classList.toggle('mobile-active');
+        });
+
+        // Optional: Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('mobile-active');
+            });
+        });
+    </script>
 
 </body>
 </html>
