@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orbis Studios</title>
+    <title>Orbis Studios | Innovation in Orbit</title>
     <style>
         :root {
             --orbis-cyan: #00AEEF; 
             --bg-dark: #050505;
             --card-bg: #111;
+            --nav-height: 70px;
         }
         body {
             background-color: var(--bg-dark);
@@ -16,121 +17,203 @@
             font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
             line-height: 1.6;
+            padding-top: var(--nav-height);
+            scroll-behavior: smooth;
         }
-        /* Hero Section */
+
+        /* --- Sticky Top Navigation Bar --- */
+        nav {
+            height: var(--nav-height);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        .nav-left img {
+            height: 35px; /* Size for Orbis_O.png */
+            width: auto;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--orbis-cyan);
+        }
+        .nav-links a.active {
+            color: white;
+            border-bottom: 2px solid var(--orbis-cyan);
+            padding-bottom: 4px;
+        }
+
+        /* --- Hero Section --- */
         header {
-            padding: 120px 20px;
+            padding: 140px 20px;
             text-align: center;
             background: radial-gradient(circle at center, #001a33 0%, var(--bg-dark) 80%);
         }
-        .logo-main { max-width: 450px; width: 100%; margin-bottom: 20px; }
+        .logo-main { 
+            max-width: 650px; /* Big impact logo */
+            width: 100%; 
+            margin-bottom: 25px; 
+            filter: drop-shadow(0 0 20px rgba(0, 174, 239, 0.25)); 
+        }
+        .hero-tagline {
+            letter-spacing: 6px; 
+            color: #aaa; 
+            font-weight: 300;
+            font-size: 0.9rem;
+            margin: 0;
+        }
         
-        /* The Accomplishment/Impact Bar (Do Big Style) */
+        /* --- Accomplishment Stats Bar --- */
         .stats-bar {
             background: var(--card-bg);
-            padding: 40px 0;
+            padding: 50px 0;
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 80px;
             border-top: 1px solid #222;
             border-bottom: 1px solid #222;
             flex-wrap: wrap;
         }
         .stat-item { text-align: center; }
-        .stat-item h2 { color: var(--orbis-cyan); font-size: 2.5rem; margin: 0; }
-        .stat-item p { color: #888; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin: 0; }
+        .stat-item h2 { color: var(--orbis-cyan); font-size: 2.8rem; margin: 0; font-weight: 800; }
+        .stat-item p { color: #666; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin: 5px 0 0 0; }
 
-        /* Works / Games Grid */
-        .container { max-width: 1100px; margin: auto; padding: 80px 20px; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: left; }
+        /* --- Grid & Content --- */
+        .container { max-width: 1150px; margin: auto; padding: 80px 20px; }
+        .section-title { font-size: 2.2rem; margin-bottom: 50px; text-align: left; font-weight: 700; }
         .section-title span { color: var(--orbis-cyan); }
 
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
         .work-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 18px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #222;
         }
-        .work-card:hover { transform: translateY(-10px); border-color: var(--orbis-cyan); }
-        .work-thumb { width: 100%; height: 200px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; }
-        .work-info { padding: 20px; }
-        .work-info h3 { margin: 0; font-size: 1.4rem; }
-        .work-info p { color: #888; font-size: 0.9rem; margin: 10px 0; }
-        .work-stat { color: var(--orbis-cyan); font-weight: bold; border: 1px solid var(--orbis-cyan); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+        .work-card:hover { transform: translateY(-12px); border-color: var(--orbis-cyan); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .work-thumb { width: 100%; height: 220px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; }
+        .work-info { padding: 25px; }
+        .work-info h3 { margin: 0; font-size: 1.5rem; letter-spacing: 0.5px; }
+        .work-info p { color: #888; font-size: 0.95rem; margin: 12px 0 20px 0; min-height: 50px; }
+        .work-stat { color: var(--orbis-cyan); font-weight: 700; border: 1px solid var(--orbis-cyan); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; letter-spacing: 1px; }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: var(--orbis-cyan);
             color: black;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: opacity 0.2s;
+            font-weight: 700;
+            border-radius: 8px;
+            margin-top: 25px;
+            transition: transform 0.2s, opacity 0.2s;
         }
-        .btn:hover { opacity: 0.8; }
+        .btn:hover { opacity: 0.9; transform: scale(1.02); }
     </style>
 </head>
 <body>
 
+    <nav>
+        <a href="#" class="nav-left">
+            <img src="Orbis_O.png" alt="Orbis Icon"> 
+            ORBIS STUDIOS
+        </a>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#works">Our Games</a>
+            <a href="#about">About</a>
+            <a href="#partner">Partnerships</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
     <header>
         <img src="Orbis.png" alt="Orbis Studios" class="logo-main">
-        <p style="letter-spacing: 4px; color: #888;">INNOVATION IN ORBIT</p>
+        <p class="hero-tagline">INNOVATION IN ORBIT</p>
     </header>
 
     <div class="stats-bar">
         <div class="stat-item">
             <h2>2M+</h2>
-            <p>Total Players</p>
+            <p>Active Players</p>
         </div>
         <div class="stat-item">
             <h2>140B+</h2>
-            <p>Sessions</p>
+            <p>Total Sessions</p>
         </div>
         <div class="stat-item">
             <h2>12%</h2>
-            <p>Platform Share</p>
+            <p>Platform DAU</p>
         </div>
     </div>
 
-    <div class="container">
-        <h2 class="section-title">Our <span>Top Works</span></h2>
+    <div class="container" id="works">
+        <h2 class="section-title">Our <span>Top Hits</span></h2>
         
         <div class="works-grid">
             <div class="work-card">
                 <div class="work-thumb">
-                    <img src="Orbis.png" style="width: 120px; opacity: 0.5;" alt="Project Icon">
+                    <img src="Orbis_O.png" style="width: 100px; opacity: 0.4;" alt="Icon">
                 </div>
                 <div class="work-info">
                     <h3>Fisch</h3>
-                    <p>Experience the ultimate aquatic adventure with custom systems and global reach.</p>
+                    <p>Revolutionary aquatic systems built for massive player engagement and immersion.</p>
                     <span class="work-stat">4.3B PLAYS</span>
                 </div>
             </div>
 
             <div class="work-card">
                 <div class="work-thumb">
-                    <img src="Orbis.png" style="width: 120px; opacity: 0.5;" alt="Project Icon">
+                    <img src="Orbis_O.png" style="width: 100px; opacity: 0.4;" alt="Icon">
                 </div>
                 <div class="work-info">
                     <h3>Blade Ball</h3>
-                    <p>High-octane combat mechanics designed for competitive excellence.</p>
-                    <span class="work-stat">6B PLAYS</span>
+                    <p>Precision-based combat mechanics defining a new genre of competitive play.</p>
+                    <span class="work-stat">6.0B PLAYS</span>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 100px; background: #111; padding: 60px; border-radius: 20px;">
-            <h2 class="section-title" style="text-align: center; display: block;">Ready to <span>Partner?</span></h2>
-            <p style="color: #888;">We offer a seamless exit strategy and expert development for creators.</p>
-            <a href="mailto:contact@orbisstudios.com" class="btn">GET IN TOUCH</a>
+        <div id="partner" style="text-align: center; margin-top: 120px; background: #0c0c0c; padding: 80px 40px; border-radius: 30px; border: 1px solid #1a1a1a;">
+            <h2 class="section-title" style="text-align: center; display: block; margin-bottom: 20px;">Game <span>Acquisition</span></h2>
+            <p style="color: #888; max-width: 600px; margin: 0 auto 30px auto;">We provide a seamless exit strategy for developers. Let's unlock the full potential of your creation together.</p>
+            <a href="mailto:contact@orbisstudios.com" class="btn" id="contact">TALK TO US</a>
         </div>
     </div>
 
