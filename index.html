@@ -49,7 +49,7 @@
             letter-spacing: 1px;
         }
         .nav-left img {
-            height: 35px; /* Updated to use the White version */
+            height: 35px;
             width: auto;
         }
         .nav-links {
@@ -125,13 +125,40 @@
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
         }
         .work-card:hover { transform: translateY(-12px); border-color: var(--orbis-cyan); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
         .work-thumb { width: 100%; height: 220px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; position: relative; }
-        .work-info { padding: 25px; }
+        .work-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .work-info h3 { margin: 0; font-size: 1.5rem; letter-spacing: 0.5px; }
-        .work-info p { color: #888; font-size: 0.95rem; margin: 12px 0 20px 0; min-height: 50px; }
+        .work-info p { color: #888; font-size: 0.95rem; margin: 12px 0 20px 0; }
+        
+        .work-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .work-stat { color: var(--orbis-cyan); font-weight: 700; border: 1px solid var(--orbis-cyan); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .btn-small {
+            text-decoration: none;
+            color: white;
+            background: #222;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: 1px solid #333;
+        }
+        .btn-small:hover {
+            background: var(--orbis-cyan);
+            color: black;
+            border-color: var(--orbis-cyan);
+        }
 
         .btn {
             display: inline-block;
@@ -156,7 +183,7 @@
         </a>
         <div class="nav-links">
             <a href="#" class="active">Home</a>
-            <a href="#work">Our Work</a>
+            <a href="#works">Our Work</a>
             <a href="#about">About</a>
             <a href="#partner">Partnerships</a>
             <a href="#contact">Contact</a>
@@ -189,12 +216,15 @@
         <div class="works-grid">
             <div class="work-card">
                 <div class="work-thumb">
-                    <img src="Orbis_O_White.png" style="width: 100px; opacity: 0.4;" alt="Icon">
+                    <img src="GTIC.png" style="width: 120px; border-radius: 10px;" alt="GTIC Icon">
                 </div>
                 <div class="work-info">
                     <h3>Gorilla Tag Intermediate COMP</h3>
-                    <p>Welcome to Gorilla Tag Intermediate COMP (GTIC)! 🦍— A competitive Gorilla Tag league open to all ranks — from beginners to pros. Compete in seasons, join a team, or chill with the community! 🏆</p>
-                    <span class="work-stat">700 Members</span>
+                    <p>Welcome to GTIC! 🦍— A competitive Gorilla Tag league open to all ranks. Compete in seasons, join a team, or climb the ranks in our thriving community! 🏆</p>
+                    <div class="work-footer">
+                        <span class="work-stat">700 Members</span>
+                        <a href="https://discord.gg/yourlink" target="_blank" class="btn-small">Join Discord</a>
+                    </div>
                 </div>
             </div>
 
@@ -204,8 +234,11 @@
                 </div>
                 <div class="work-info">
                     <h3>Blade Ball</h3>
-                    <p>Precision-based combat mechanics defining a new genre of competitive play.</p>
-                    <span class="work-stat">6.0B PLAYS</span>
+                    <p>Precision-based combat mechanics defining a new genre of competitive play on the Roblox platform.</p>
+                    <div class="work-footer">
+                        <span class="work-stat">6.0B PLAYS</span>
+                        <a href="#" class="btn-small">Play Now</a>
+                    </div>
                 </div>
             </div>
         </div>
