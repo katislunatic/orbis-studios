@@ -66,20 +66,22 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent; /* Hidden underline by default */
         }
         .nav-links a:hover {
             color: var(--orbis-cyan);
         }
+        /* Active State */
         .nav-links a.active {
             color: white;
             border-bottom: 2px solid var(--orbis-cyan);
-            padding-bottom: 4px;
         }
 
         /* --- Hamburger Menu Icon --- */
         .hamburger {
-            display: none; /* Hidden on desktop */
+            display: none; 
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
@@ -102,7 +104,7 @@
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: -100%; /* Start off-screen */
+                right: -100%; 
                 height: 100vh;
                 width: 75%;
                 background: rgba(10, 10, 10, 0.98);
@@ -115,14 +117,13 @@
             }
 
             .nav-links.mobile-active {
-                right: 0; /* Slide in */
+                right: 0; 
             }
 
             .nav-links a {
                 font-size: 1.1rem;
             }
 
-            /* Turn hamburger into an X when open */
             .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
             .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -378,17 +379,24 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
+        const allLinks = document.querySelectorAll('.nav-links a');
 
+        // Toggle Hamburger and Mobile Menu
         hamburger.addEventListener('click', () => {
-            // Toggles the hamburger animation
             hamburger.classList.toggle('open');
-            // Toggles the menu sliding in
             navLinks.classList.toggle('mobile-active');
         });
 
-        // Optional: Close menu when a link is clicked
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Loop through all links to handle the "active" switch
+        allLinks.forEach(link => {
             link.addEventListener('click', () => {
+                // 1. Remove "active" class from whichever link currently has it
+                allLinks.forEach(l => l.classList.remove('active'));
+
+                // 2. Add "active" class to the link that was just clicked
+                link.classList.add('active');
+
+                // 3. Close the mobile menu automatically after clicking
                 hamburger.classList.remove('open');
                 navLinks.classList.remove('mobile-active');
             });
