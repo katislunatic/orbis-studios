@@ -99,20 +99,34 @@
             padding: 5px;
             gap: 2px;
             transition: background 0.5s, border-color 0.5s;
+            position: absolute;
         }
         body.light-mode .nav-center { background: rgba(0,0,0,0.04); }
+
+        /* Sliding pill indicator */
+        .nav-slider {
+            position: absolute;
+            height: calc(100% - 10px);
+            background: var(--cyan);
+            border-radius: 100px;
+            top: 5px;
+            transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            z-index: 0;
+        }
 
         .nav-center a {
             text-decoration: none; color: var(--text-muted);
             font-size: 0.75rem; font-weight: 600;
             letter-spacing: 1px; text-transform: uppercase;
             padding: 7px 16px; border-radius: 100px;
-            transition: color 0.25s, background 0.25s;
+            transition: color 0.25s;
             white-space: nowrap;
+            position: relative; z-index: 1;
         }
-        .nav-center a:hover { color: white; background: rgba(255,255,255,0.08); }
-        body.light-mode .nav-center a:hover { color: #111; background: rgba(0,0,0,0.06); }
-        .nav-center a.active { color: white; background: var(--cyan); }
+        .nav-center a:hover { color: white; }
+        body.light-mode .nav-center a:hover { color: #111; }
+        .nav-center a.active { color: white; background: transparent; }
         body.light-mode .nav-center a.active { color: white; }
 
         .nav-right { display: flex; align-items: center; gap: 10px; }
@@ -357,6 +371,7 @@
         </a>
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         <div class="nav-center" id="nav-links">
+            <div class="nav-slider" id="navSlider"></div>
             <a href="#" class="active">Home</a>
             <a href="#services">What We Do</a>
             <a href="#works">Projects</a>
@@ -640,15 +655,31 @@
     </div>
 
     <script>
-        // NAV
+        // NAV SLIDER
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
         const allLinks = document.querySelectorAll('.nav-center a');
+        const slider = document.getElementById('navSlider');
+
+        function moveSlider(link) {
+            const navRect = navLinks.getBoundingClientRect();
+            const linkRect = link.getBoundingClientRect();
+            slider.style.left = (linkRect.left - navRect.left) + 'px';
+            slider.style.width = linkRect.width + 'px';
+        }
+
+        // Init slider on page load
+        window.addEventListener('load', () => {
+            const active = document.querySelector('.nav-center a.active');
+            if (active) moveSlider(active);
+        });
+
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('mobile-active'); });
         allLinks.forEach(link => {
             link.addEventListener('click', () => {
                 allLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
+                moveSlider(link);
                 hamburger.classList.remove('open');
                 navLinks.classList.remove('mobile-active');
             });
