@@ -56,29 +56,84 @@
         body.light-mode .modal-box h3 { color: #111; }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'DM Sans', sans-serif; padding-top: var(--nav-h); overflow-x: hidden; }
+        body {
+            background: var(--bg); color: #fff; font-family: 'DM Sans', sans-serif;
+            padding-top: var(--nav-h); overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* THEME TRANSITION OVERLAY */
+        .theme-flash {
+            position: fixed; inset: 0; z-index: 9999;
+            pointer-events: none; opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+        .theme-flash.active { opacity: 1; }
 
         /* NAV */
         nav {
             height: var(--nav-h); width: 100%; position: fixed; top: 0; left: 0;
-            background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: var(--nav-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 6%; z-index: 1000;
+            padding: 0 5%; z-index: 1000;
+            transition: background 0.5s ease, border-color 0.5s ease;
         }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 2px; }
-        .nav-logo img { height: 30px; }
-        .nav-links { display: flex; gap: 6px; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.78rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; padding: 7px 12px; border-radius: 8px; transition: color 0.25s, background 0.25s; }
-        .nav-links a:hover { color: white; background: rgba(255,255,255,0.06); }
-        .nav-links a.active { color: var(--cyan); background: var(--cyan-dim); }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: white;
+            font-family: 'Syne', sans-serif; font-weight: 800;
+            font-size: 0.95rem; letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+        .nav-logo img { height: 28px; }
+
+        /* Centered pill nav container */
+        .nav-center {
+            position: absolute; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            display: flex; align-items: center;
+            padding: 5px;
+            gap: 2px;
+            transition: background 0.5s, border-color 0.5s;
+        }
+        body.light-mode .nav-center { background: rgba(0,0,0,0.04); }
+
+        .nav-center a {
+            text-decoration: none; color: var(--text-muted);
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 7px 16px; border-radius: 100px;
+            transition: color 0.25s, background 0.25s;
+            white-space: nowrap;
+        }
+        .nav-center a:hover { color: white; background: rgba(255,255,255,0.08); }
+        body.light-mode .nav-center a:hover { color: #111; background: rgba(0,0,0,0.06); }
+        .nav-center a.active { color: white; background: var(--cyan); }
+        body.light-mode .nav-center a.active { color: white; }
+
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; padding: 8px; }
         .hamburger span { width: 22px; height: 2px; background: white; border-radius: 2px; transition: 0.3s; }
+
         @media (max-width: 860px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 72%; background: rgba(8,8,12,0.98); flex-direction: column; justify-content: center; align-items: center; gap: 8px; transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1); border-left: 1px solid var(--border); }
-            .nav-links.mobile-active { right: 0; }
-            .nav-links a { font-size: 1rem; padding: 14px 30px; }
+            .nav-center {
+                position: fixed; top: 0; right: -100%; left: auto; transform: none;
+                height: 100vh; width: 72%;
+                background: rgba(8,8,12,0.98);
+                flex-direction: column; justify-content: center; align-items: center;
+                gap: 8px; border-radius: 0;
+                padding: 40px 20px;
+                transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                border-left: 1px solid var(--border); border-top: none; border-right: none; border-bottom: none;
+            }
+            .nav-center.mobile-active { right: 0; }
+            .nav-center a { font-size: 1rem; padding: 14px 30px; border-radius: 12px; }
             .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
             .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -301,7 +356,7 @@
             ORBIS STUDIOS
         </a>
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-        <div class="nav-links" id="nav-links">
+        <div class="nav-center" id="nav-links">
             <a href="#" class="active">Home</a>
             <a href="#services">What We Do</a>
             <a href="#works">Projects</a>
@@ -309,6 +364,7 @@
             <a href="#pipeline">Pipeline</a>
             <a href="#team">Team</a>
         </div>
+        <div class="nav-right">
         <div class="settings-wrap">
             <button class="settings-btn" id="settingsBtn" aria-label="Settings">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -331,6 +387,7 @@
             </div>
         </div>
     </nav>
+    <div class="theme-flash" id="themeFlash"></div>
 
     <header>
         <div class="hero-grid"></div>
@@ -586,7 +643,7 @@
         // NAV
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
-        const allLinks = document.querySelectorAll('.nav-links a');
+        const allLinks = document.querySelectorAll('.nav-center a');
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navLinks.classList.toggle('mobile-active'); });
         allLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -608,12 +665,12 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // SETTINGS & THEME
         const settingsBtn = document.getElementById('settingsBtn');
         const settingsDropdown = document.getElementById('settingsDropdown');
+        const themeFlash = document.getElementById('themeFlash');
 
         settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -628,21 +685,28 @@
         });
 
         function setTheme(mode) {
-            if (mode === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('themeLight').classList.add('active');
-                document.getElementById('themeDark').classList.remove('active');
-            } else {
-                document.body.classList.remove('light-mode');
-                document.getElementById('themeDark').classList.add('active');
-                document.getElementById('themeLight').classList.remove('active');
-            }
+            const isLight = mode === 'light';
+            themeFlash.style.background = isLight ? 'rgba(240,242,245,0.3)' : 'rgba(5,5,7,0.4)';
+            themeFlash.classList.add('active');
+            setTimeout(() => {
+                document.body.classList.toggle('light-mode', isLight);
+                setTimeout(() => themeFlash.classList.remove('active'), 200);
+            }, 130);
+            document.getElementById('themeLight').classList.toggle('active', isLight);
+            document.getElementById('themeDark').classList.toggle('active', !isLight);
             localStorage.setItem('orbis-theme', mode);
         }
 
         // Restore saved theme
         const savedTheme = localStorage.getItem('orbis-theme');
-        if (savedTheme === 'light') setTheme('light');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('themeLight').classList.add('active');
+            document.getElementById('themeDark').classList.remove('active');
+        }
+
+        // MODAL
+        function openPrivacy() { document.getElementById('privacyModal').style.display = 'block'; }
         function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
         window.addEventListener('click', e => { if (e.target === document.getElementById('privacyModal')) closePrivacy(); });
     </script>
