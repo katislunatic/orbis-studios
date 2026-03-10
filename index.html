@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="Orbis_O_White.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -229,13 +229,13 @@
         }
         .stat-item:hover { background: var(--cyan-dim); }
         .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.6rem;
+            font-weight: 400;
             color: var(--cyan);
             line-height: 1;
             display: block;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
         }
         .stat-label {
             display: block;
@@ -296,6 +296,7 @@
             background: radial-gradient(circle at 50% 0%, rgba(0,174,239,0.08) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.4s;
+            pointer-events: none;
         }
         .work-card:hover {
             transform: translateY(-10px);
