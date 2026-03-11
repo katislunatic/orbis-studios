@@ -1,3 +1,12 @@
+// ===================== iOS LIQUID GLASS DETECTION =====================
+(function() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+        document.body.classList.add('ios-glass');
+    }
+})();
+
 // ===================== NAV SLIDER =====================
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
