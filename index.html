@@ -360,6 +360,137 @@
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
         .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ===================== LIQUID GLASS (iOS only) ===================== */
+        body.ios-glass nav {
+            background: rgba(255, 255, 255, 0.08) !important;
+            backdrop-filter: blur(40px) saturate(180%) brightness(1.1) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.12) inset,
+                0 8px 32px rgba(0,0,0,0.3);
+        }
+        body.ios-glass.light-mode nav {
+            background: rgba(255,255,255,0.45) !important;
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.05) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.6) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        body.ios-glass .nav-center {
+            background: rgba(255,255,255,0.08) !important;
+            backdrop-filter: blur(20px) saturate(160%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.2) inset,
+                0 4px 20px rgba(0,0,0,0.25);
+        }
+        body.ios-glass.light-mode .nav-center {
+            background: rgba(255,255,255,0.5) !important;
+            border: 1px solid rgba(255,255,255,0.7) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 4px 20px rgba(0,0,0,0.08) !important;
+        }
+
+        /* Glass cards */
+        body.ios-glass .work-card,
+        body.ios-glass .service-card,
+        body.ios-glass .team-card,
+        body.ios-glass .pipeline-item {
+            background: rgba(255,255,255,0.055) !important;
+            backdrop-filter: blur(24px) saturate(160%) !important;
+            -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+            border: 1px solid rgba(255,255,255,0.13) !important;
+            box-shadow:
+                0 1px 0 rgba(255,255,255,0.15) inset,
+                0 0 0 0.5px rgba(255,255,255,0.06) inset,
+                0 16px 40px rgba(0,0,0,0.35);
+        }
+        body.ios-glass.light-mode .work-card,
+        body.ios-glass.light-mode .service-card,
+        body.ios-glass.light-mode .team-card,
+        body.ios-glass.light-mode .pipeline-item {
+            background: rgba(255,255,255,0.55) !important;
+            backdrop-filter: blur(24px) saturate(200%) !important;
+            -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+            border: 1px solid rgba(255,255,255,0.75) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 16px 40px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Glass shimmer edge on cards */
+        body.ios-glass .work-card::after,
+        body.ios-glass .team-card::after,
+        body.ios-glass .pipeline-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.12) 0%,
+                rgba(255,255,255,0.03) 40%,
+                transparent 60%
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glass modal */
+        body.ios-glass .modal-box {
+            background: rgba(14,14,20,0.6) !important;
+            backdrop-filter: blur(40px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 30px 80px rgba(0,0,0,0.5) !important;
+        }
+        body.ios-glass.light-mode .modal-box {
+            background: rgba(255,255,255,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.8) !important;
+        }
+
+        /* Glass settings dropdown */
+        body.ios-glass .settings-dropdown {
+            background: rgba(14,14,20,0.55) !important;
+            backdrop-filter: blur(30px) saturate(160%) !important;
+            -webkit-backdrop-filter: blur(30px) saturate(160%) !important;
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 20px 60px rgba(0,0,0,0.5) !important;
+        }
+        body.ios-glass.light-mode .settings-dropdown {
+            background: rgba(255,255,255,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.8) !important;
+        }
+
+        /* Glass settings button */
+        body.ios-glass .settings-btn {
+            background: rgba(255,255,255,0.08) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset !important;
+        }
+
+        /* iOS glass banner */
+        .ios-glass-banner {
+            display: none;
+            position: fixed;
+            bottom: 24px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,174,239,0.15);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(0,174,239,0.3);
+            border-radius: 100px;
+            padding: 10px 20px;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 1px; color: var(--cyan);
+            z-index: 500;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 8px 24px rgba(0,0,0,0.3);
+            animation: fadeUp 0.6s 0.5s both;
+            white-space: nowrap;
+        }
+        body.ios-glass .ios-glass-banner { display: block; }
     </style>
 </head>
 <body>
@@ -403,6 +534,7 @@
         </div>
     </nav>
     <div class="theme-flash" id="themeFlash"></div>
+    <div class="ios-glass-banner">✦ Liquid Glass Mode Active</div>
 
     <header>
         <div class="hero-grid"></div>
@@ -655,6 +787,13 @@
     </div>
 
     <script>
+        // iOS DETECTION & LIQUID GLASS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (isIOS) {
+            document.body.classList.add('ios-glass');
+        }
+
         // NAV SLIDER
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
