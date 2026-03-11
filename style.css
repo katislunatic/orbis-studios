@@ -340,41 +340,32 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 .reveal-delay-5 { transition-delay: 0.5s; }
 
 /* ===================== LIQUID GLASS (iOS only) ===================== */
-/* Applied via body.ios-glass class, set by JS on iOS devices */
-
-body.ios-glass nav,
-body.ios-glass .nav-center,
-body.ios-glass .work-card,
-body.ios-glass .service-card,
-body.ios-glass .team-card,
-body.ios-glass .pipeline-item,
-body.ios-glass .settings-btn,
-body.ios-glass .settings-dropdown,
-body.ios-glass .modal-box,
-body.ios-glass .stats-bar {
-    /* Replace solid backgrounds with the SVG displacement filter */
-    -webkit-backdrop-filter: url(#frosted) blur(2px);
-    backdrop-filter: url(#frosted) blur(2px);
-}
+/* Dark bg = low blur contrast. Fix: crank blur way up, lift brightness
+   significantly, use a brighter tint, and add stronger specular borders
+   so the glass panel is unmistakably visible against dark surfaces. */
 
 /* Nav bar */
 body.ios-glass nav {
-    background: rgba(10, 10, 16, 0.25) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.18) !important;
+    background: rgba(30, 32, 48, 0.45) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(220%) brightness(1.6) !important;
+    backdrop-filter: blur(60px) saturate(220%) brightness(1.6) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.28) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.4) inset,
-        0 -0.5px 0 rgba(0,0,0,0.35) inset,
-        0 12px 40px rgba(0,0,0,0.3);
+        0 1px 0 rgba(255,255,255,0.5) inset,
+        0 -1px 0 rgba(0,0,0,0.5) inset,
+        0 16px 48px rgba(0,0,0,0.5) !important;
 }
 
 /* Nav pill */
 body.ios-glass .nav-center {
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(255,255,255,0.25) !important;
+    background: rgba(255,255,255,0.12) !important;
+    -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(1.5) !important;
+    backdrop-filter: blur(50px) saturate(200%) brightness(1.5) !important;
+    border: 1px solid rgba(255,255,255,0.32) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.5) inset,
-        0 -0.5px 0 rgba(0,0,0,0.25) inset,
-        0 8px 24px rgba(0,0,0,0.3);
+        0 1px 0 rgba(255,255,255,0.6) inset,
+        0 -1px 0 rgba(0,0,0,0.3) inset,
+        0 8px 32px rgba(0,0,0,0.4) !important;
 }
 
 /* Cards */
@@ -382,75 +373,82 @@ body.ios-glass .work-card,
 body.ios-glass .service-card,
 body.ios-glass .team-card,
 body.ios-glass .pipeline-item {
-    background: rgba(255,255,255,0.05) !important;
-    border: 1px solid rgba(255,255,255,0.16) !important;
+    background: rgba(255,255,255,0.09) !important;
+    -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(1.55) !important;
+    backdrop-filter: blur(50px) saturate(200%) brightness(1.55) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.45) inset,
-        0 -0.5px 0 rgba(0,0,0,0.2) inset,
-        0 20px 50px rgba(0,0,0,0.4) !important;
+        0 1px 0 rgba(255,255,255,0.55) inset,
+        0 -1px 0 rgba(0,0,0,0.25) inset,
+        0 24px 60px rgba(0,0,0,0.5) !important;
+    overflow: visible !important;
 }
 
 /* Settings button */
 body.ios-glass .settings-btn {
-    background: rgba(255,255,255,0.07) !important;
-    border: 1px solid rgba(255,255,255,0.22) !important;
-    box-shadow: 0 0.5px 0 rgba(255,255,255,0.4) inset !important;
+    background: rgba(255,255,255,0.12) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.5) !important;
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.5) !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset !important;
 }
 
 /* Settings dropdown */
 body.ios-glass .settings-dropdown {
-    background: rgba(12,12,20,0.4) !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
+    background: rgba(20, 22, 36, 0.5) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(220%) brightness(1.5) !important;
+    backdrop-filter: blur(60px) saturate(220%) brightness(1.5) !important;
+    border: 1px solid rgba(255,255,255,0.26) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.3) inset,
-        0 24px 60px rgba(0,0,0,0.5) !important;
+        0 1px 0 rgba(255,255,255,0.4) inset,
+        0 28px 70px rgba(0,0,0,0.6) !important;
 }
 
 /* Modal */
 body.ios-glass .modal-box {
-    background: rgba(10,10,18,0.45) !important;
-    border: 1px solid rgba(255,255,255,0.18) !important;
+    background: rgba(15, 16, 28, 0.5) !important;
+    -webkit-backdrop-filter: blur(70px) saturate(220%) brightness(1.5) !important;
+    backdrop-filter: blur(70px) saturate(220%) brightness(1.5) !important;
+    border: 1px solid rgba(255,255,255,0.24) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.3) inset,
-        0 40px 80px rgba(0,0,0,0.55) !important;
+        0 1px 0 rgba(255,255,255,0.4) inset,
+        0 48px 96px rgba(0,0,0,0.65) !important;
 }
 
-/* Light mode overrides */
-body.ios-glass.light-mode nav,
-body.ios-glass.light-mode .nav-center,
-body.ios-glass.light-mode .work-card,
-body.ios-glass.light-mode .service-card,
-body.ios-glass.light-mode .team-card,
-body.ios-glass.light-mode .pipeline-item,
-body.ios-glass.light-mode .settings-dropdown,
-body.ios-glass.light-mode .modal-box {
-    -webkit-backdrop-filter: url(#frosted) blur(1px);
-    backdrop-filter: url(#frosted) blur(1px);
-}
-
+/* ---- Light mode ---- */
 body.ios-glass.light-mode nav {
-    background: rgba(240,242,245,0.3) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.7) !important;
+    background: rgba(240,242,245,0.4) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(240%) brightness(1.08) !important;
+    backdrop-filter: blur(60px) saturate(240%) brightness(1.08) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.75) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 16px 48px rgba(0,0,0,0.1) !important;
 }
 
 body.ios-glass.light-mode .nav-center {
-    background: rgba(255,255,255,0.35) !important;
-    border: 1px solid rgba(255,255,255,0.75) !important;
+    background: rgba(255,255,255,0.5) !important;
+    -webkit-backdrop-filter: blur(50px) saturate(240%) !important;
+    backdrop-filter: blur(50px) saturate(240%) !important;
+    border: 1px solid rgba(255,255,255,0.85) !important;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 8px 24px rgba(0,0,0,0.06) !important;
 }
 
 body.ios-glass.light-mode .work-card,
 body.ios-glass.light-mode .service-card,
 body.ios-glass.light-mode .team-card,
 body.ios-glass.light-mode .pipeline-item {
-    background: rgba(255,255,255,0.45) !important;
-    border: 1px solid rgba(255,255,255,0.8) !important;
+    background: rgba(255,255,255,0.55) !important;
+    -webkit-backdrop-filter: blur(50px) saturate(240%) brightness(1.06) !important;
+    backdrop-filter: blur(50px) saturate(240%) brightness(1.06) !important;
+    border: 1px solid rgba(255,255,255,0.85) !important;
     box-shadow:
-        0 0.5px 0 rgba(255,255,255,0.95) inset,
-        0 20px 50px rgba(0,0,0,0.1) !important;
+        0 1px 0 rgba(255,255,255,0.98) inset,
+        0 20px 50px rgba(0,0,0,0.08) !important;
 }
 
 body.ios-glass.light-mode .settings-dropdown,
 body.ios-glass.light-mode .modal-box {
-    background: rgba(255,255,255,0.5) !important;
-    border: 1px solid rgba(255,255,255,0.85) !important;
+    background: rgba(255,255,255,0.6) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(240%) !important;
+    backdrop-filter: blur(60px) saturate(240%) !important;
+    border: 1px solid rgba(255,255,255,0.88) !important;
 }
