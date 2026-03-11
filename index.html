@@ -362,135 +362,233 @@
         .reveal-delay-5 { transition-delay: 0.5s; }
 
         /* ===================== LIQUID GLASS (iOS only) ===================== */
+
+        /* Keyframe: slow rainbow drift on the iridescent ring */
+        @keyframes iridescentShift {
+            0%   { filter: hue-rotate(0deg) saturate(180%) brightness(1.1); }
+            33%  { filter: hue-rotate(120deg) saturate(220%) brightness(1.2); }
+            66%  { filter: hue-rotate(240deg) saturate(180%) brightness(1.05); }
+            100% { filter: hue-rotate(360deg) saturate(180%) brightness(1.1); }
+        }
+        @keyframes specularMove {
+            0%, 100% { opacity: 0.5; transform: translateX(-30%) translateY(-20%) rotate(-10deg); }
+            50%       { opacity: 0.8; transform: translateX(-20%) translateY(-30%) rotate(-5deg); }
+        }
+
+        /* NAV BAR — thick frosted glass slab */
         body.ios-glass nav {
-            background: rgba(255, 255, 255, 0.08) !important;
-            backdrop-filter: blur(40px) saturate(180%) brightness(1.1) !important;
-            -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1) !important;
-            border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+            background: rgba(20, 20, 28, 0.35) !important;
+            backdrop-filter: blur(60px) saturate(200%) brightness(1.15) contrast(1.05) !important;
+            -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(1.15) contrast(1.05) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.18) !important;
             box-shadow:
-                0 1px 0 rgba(255,255,255,0.12) inset,
-                0 8px 32px rgba(0,0,0,0.3);
+                0 0.5px 0 rgba(255,255,255,0.35) inset,
+                0 -0.5px 0 rgba(0,0,0,0.4) inset,
+                0 12px 40px rgba(0,0,0,0.45),
+                0 1px 0 rgba(255,255,255,0.06);
         }
         body.ios-glass.light-mode nav {
-            background: rgba(255,255,255,0.45) !important;
-            backdrop-filter: blur(40px) saturate(200%) brightness(1.05) !important;
-            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05) !important;
-            border-bottom: 1px solid rgba(255,255,255,0.6) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 8px 32px rgba(0,0,0,0.08);
-        }
-
-        body.ios-glass .nav-center {
-            background: rgba(255,255,255,0.08) !important;
-            backdrop-filter: blur(20px) saturate(160%) !important;
-            -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
-            border: 1px solid rgba(255,255,255,0.18) !important;
+            background: rgba(255,255,255,0.38) !important;
+            backdrop-filter: blur(60px) saturate(240%) brightness(1.08) !important;
+            -webkit-backdrop-filter: blur(60px) saturate(240%) brightness(1.08) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.65) !important;
             box-shadow:
-                0 1px 0 rgba(255,255,255,0.2) inset,
-                0 4px 20px rgba(0,0,0,0.25);
-        }
-        body.ios-glass.light-mode .nav-center {
-            background: rgba(255,255,255,0.5) !important;
-            border: 1px solid rgba(255,255,255,0.7) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 4px 20px rgba(0,0,0,0.08) !important;
+                0 0.5px 0 rgba(255,255,255,0.9) inset,
+                0 12px 40px rgba(0,0,0,0.1);
         }
 
-        /* Glass cards */
+        /* NAV PILL — the floating capsule */
+        body.ios-glass .nav-center {
+            background: rgba(255,255,255,0.07) !important;
+            backdrop-filter: blur(50px) saturate(220%) brightness(1.2) !important;
+            -webkit-backdrop-filter: blur(50px) saturate(220%) brightness(1.2) !important;
+            border: 1px solid rgba(255,255,255,0.22) !important;
+            box-shadow:
+                0 0.5px 0 rgba(255,255,255,0.45) inset,
+                0 -0.5px 0 rgba(0,0,0,0.3) inset,
+                0 1px 0 rgba(255,255,255,0.12),
+                0 8px 32px rgba(0,0,0,0.4),
+                0 2px 8px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Iridescent rim on nav pill */
+        body.ios-glass .nav-center::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 100px;
+            background: conic-gradient(
+                from 0deg,
+                rgba(255,100,100,0.0),
+                rgba(255,180,0,0.18),
+                rgba(100,255,180,0.22),
+                rgba(100,180,255,0.22),
+                rgba(220,100,255,0.18),
+                rgba(255,100,100,0.0)
+            );
+            animation: iridescentShift 6s linear infinite;
+            border-radius: 100px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Specular highlight streak across top of nav pill */
+        body.ios-glass .nav-center::after {
+            content: '';
+            position: absolute;
+            top: 4px; left: 15%; right: 15%;
+            height: 30%;
+            background: linear-gradient(
+                180deg,
+                rgba(255,255,255,0.35) 0%,
+                rgba(255,255,255,0.08) 60%,
+                transparent 100%
+            );
+            border-radius: 100px;
+            pointer-events: none;
+            z-index: 2;
+            filter: blur(1px);
+        }
+
+        /* GLASS CARDS — work, service, team, pipeline */
         body.ios-glass .work-card,
         body.ios-glass .service-card,
         body.ios-glass .team-card,
         body.ios-glass .pipeline-item {
-            background: rgba(255,255,255,0.055) !important;
-            backdrop-filter: blur(24px) saturate(160%) !important;
-            -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
-            border: 1px solid rgba(255,255,255,0.13) !important;
+            background: rgba(255,255,255,0.06) !important;
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.12) contrast(1.02) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.12) contrast(1.02) !important;
+            border: 1px solid rgba(255,255,255,0.16) !important;
             box-shadow:
-                0 1px 0 rgba(255,255,255,0.15) inset,
-                0 0 0 0.5px rgba(255,255,255,0.06) inset,
-                0 16px 40px rgba(0,0,0,0.35);
-        }
-        body.ios-glass.light-mode .work-card,
-        body.ios-glass.light-mode .service-card,
-        body.ios-glass.light-mode .team-card,
-        body.ios-glass.light-mode .pipeline-item {
-            background: rgba(255,255,255,0.55) !important;
-            backdrop-filter: blur(24px) saturate(200%) !important;
-            -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
-            border: 1px solid rgba(255,255,255,0.75) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.95) inset, 0 16px 40px rgba(0,0,0,0.1) !important;
+                0 0.5px 0 rgba(255,255,255,0.4) inset,
+                0 -0.5px 0 rgba(0,0,0,0.25) inset,
+                0 1px 0 rgba(255,255,255,0.1),
+                0 20px 60px rgba(0,0,0,0.45),
+                0 4px 16px rgba(0,0,0,0.25) !important;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Glass shimmer edge on cards */
+        /* Iridescent edge shimmer on cards */
+        body.ios-glass .work-card::before,
+        body.ios-glass .team-card::before,
+        body.ios-glass .pipeline-item::before {
+            content: '' !important;
+            position: absolute !important;
+            inset: 0 !important;
+            border-radius: inherit !important;
+            background: linear-gradient(
+                135deg,
+                rgba(120,220,255,0.0) 0%,
+                rgba(180,120,255,0.08) 25%,
+                rgba(120,255,200,0.1) 50%,
+                rgba(255,180,100,0.06) 75%,
+                rgba(100,180,255,0.0) 100%
+            ) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+            opacity: 1 !important;
+            animation: iridescentShift 8s linear infinite !important;
+        }
+
+        /* Top specular highlight on cards */
         body.ios-glass .work-card::after,
         body.ios-glass .team-card::after,
         body.ios-glass .pipeline-item::after {
             content: '';
             position: absolute;
-            inset: 0;
-            border-radius: inherit;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Service cards get slightly different shimmer angle */
+        body.ios-glass .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 40%;
             background: linear-gradient(
-                135deg,
-                rgba(255,255,255,0.12) 0%,
-                rgba(255,255,255,0.03) 40%,
-                transparent 60%
+                180deg,
+                rgba(255,255,255,0.1) 0%,
+                transparent 100%
             );
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
         }
 
-        /* Glass modal */
-        body.ios-glass .modal-box {
-            background: rgba(14,14,20,0.6) !important;
-            backdrop-filter: blur(40px) saturate(180%) !important;
-            -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-            border: 1px solid rgba(255,255,255,0.15) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 30px 80px rgba(0,0,0,0.5) !important;
-        }
-        body.ios-glass.light-mode .modal-box {
-            background: rgba(255,255,255,0.6) !important;
-            border: 1px solid rgba(255,255,255,0.8) !important;
-        }
-
-        /* Glass settings dropdown */
-        body.ios-glass .settings-dropdown {
-            background: rgba(14,14,20,0.55) !important;
-            backdrop-filter: blur(30px) saturate(160%) !important;
-            -webkit-backdrop-filter: blur(30px) saturate(160%) !important;
-            border: 1px solid rgba(255,255,255,0.15) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 20px 60px rgba(0,0,0,0.5) !important;
-        }
-        body.ios-glass.light-mode .settings-dropdown {
-            background: rgba(255,255,255,0.6) !important;
-            border: 1px solid rgba(255,255,255,0.8) !important;
+        /* Light mode glass cards */
+        body.ios-glass.light-mode .work-card,
+        body.ios-glass.light-mode .service-card,
+        body.ios-glass.light-mode .team-card,
+        body.ios-glass.light-mode .pipeline-item {
+            background: rgba(255,255,255,0.52) !important;
+            backdrop-filter: blur(40px) saturate(240%) brightness(1.06) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(240%) brightness(1.06) !important;
+            border: 1px solid rgba(255,255,255,0.75) !important;
+            box-shadow:
+                0 0.5px 0 rgba(255,255,255,0.95) inset,
+                0 20px 60px rgba(0,0,0,0.1),
+                0 4px 16px rgba(0,0,0,0.08) !important;
         }
 
-        /* Glass settings button */
+        /* SETTINGS BUTTON */
         body.ios-glass .settings-btn {
             background: rgba(255,255,255,0.08) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(255,255,255,0.18) !important;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset !important;
+            backdrop-filter: blur(30px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+            border: 1px solid rgba(255,255,255,0.22) !important;
+            box-shadow:
+                0 0.5px 0 rgba(255,255,255,0.4) inset,
+                0 4px 16px rgba(0,0,0,0.3) !important;
         }
 
-        /* iOS glass banner */
-        .ios-glass-banner {
-            display: none;
-            position: fixed;
-            bottom: 24px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,174,239,0.15);
-            backdrop-filter: blur(20px) saturate(160%);
-            -webkit-backdrop-filter: blur(20px) saturate(160%);
-            border: 1px solid rgba(0,174,239,0.3);
-            border-radius: 100px;
-            padding: 10px 20px;
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 1px; color: var(--cyan);
-            z-index: 500;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 8px 24px rgba(0,0,0,0.3);
-            animation: fadeUp 0.6s 0.5s both;
-            white-space: nowrap;
+        /* SETTINGS DROPDOWN */
+        body.ios-glass .settings-dropdown {
+            background: rgba(18,18,26,0.45) !important;
+            backdrop-filter: blur(50px) saturate(200%) brightness(1.1) !important;
+            -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(1.1) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            box-shadow:
+                0 0.5px 0 rgba(255,255,255,0.35) inset,
+                0 30px 80px rgba(0,0,0,0.55) !important;
         }
-        body.ios-glass .ios-glass-banner { display: block; }
+        body.ios-glass.light-mode .settings-dropdown {
+            background: rgba(255,255,255,0.58) !important;
+            backdrop-filter: blur(50px) saturate(240%) !important;
+            -webkit-backdrop-filter: blur(50px) saturate(240%) !important;
+            border: 1px solid rgba(255,255,255,0.82) !important;
+        }
+
+        /* MODAL */
+        body.ios-glass .modal-box {
+            background: rgba(12,12,20,0.5) !important;
+            backdrop-filter: blur(60px) saturate(200%) brightness(1.1) !important;
+            -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(1.1) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+            box-shadow:
+                0 0.5px 0 rgba(255,255,255,0.35) inset,
+                0 40px 100px rgba(0,0,0,0.6) !important;
+        }
+        body.ios-glass.light-mode .modal-box {
+            background: rgba(255,255,255,0.58) !important;
+            border: 1px solid rgba(255,255,255,0.82) !important;
+        }
+
+        /* STATS BAR on iOS */
+        body.ios-glass .stats-bar {
+            background: rgba(255,255,255,0.04) !important;
+            backdrop-filter: blur(40px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+        }
+        body.ios-glass.light-mode .stats-bar {
+            background: rgba(255,255,255,0.4) !important;
+        }
     </style>
 </head>
 <body>
@@ -534,7 +632,6 @@
         </div>
     </nav>
     <div class="theme-flash" id="themeFlash"></div>
-    <div class="ios-glass-banner">✦ Liquid Glass Mode Active</div>
 
     <header>
         <div class="hero-grid"></div>
