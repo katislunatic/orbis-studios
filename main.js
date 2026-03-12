@@ -93,15 +93,59 @@ if (savedTheme === 'light') {
     document.getElementById('themeDark').classList.remove('active');
 }
 
+// ===================== SCROLLSPY =====================
+const spySections = [
+    { id: '',         el: document.querySelector('header') },
+    { id: 'services', el: document.getElementById('services') },
+    { id: 'works',    el: document.getElementById('works') },
+    { id: 'about',    el: document.getElementById('about') },
+    { id: 'pipeline', el: document.getElementById('pipeline') },
+    { id: 'team',     el: document.getElementById('team') },
+];
+
+function updateActiveNav() {
+    let current = '';
+    spySections.forEach(({ id, el }) => {
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+    });
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href').replace('#', '');
+        const matches = href === current;
+        link.classList.toggle('active', matches);
+        if (matches) moveSlider(link);
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+// ===================== DISCORD LIVE MEMBER COUNT =====================
+(function fetchGTICCount() {
+    const GUILD_ID = '1385408756464226414';
+    const TOTAL_MEMBERS = 700; // ← Update this manually when needed
+    const membersEl = document.getElementById('gtic-members-text');
+    const onlineEl  = document.getElementById('gtic-online-text');
+    if (!membersEl || !onlineEl) return;
+
+    membersEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
+
+    fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
+        .then(r => r.json())
+        .then(data => {
+            const online = typeof data.presence_count === 'number' ? data.presence_count : null;
+            onlineEl.textContent = online !== null ? `${online.toLocaleString()} Online` : '— Online';
+        })
+        .catch(() => { onlineEl.textContent = '— Online'; });
+})();
+
 // ===================== DISCORD OAUTH =====================
-const DISCORD_CLIENT_ID = '1412560943493419070';
-const DISCORD_REDIRECT   = 'https://orbis-studios.netlify.app/#';
-const DISCORD_SCOPE      = 'identify';
+const DISCORD_CLIENT_ID = '1481772391049728061';
+const DISCORD_REDIRECT  = 'https://orbis-studios.netlify.app/#';
+const DISCORD_SCOPE     = 'identify connections email';
 
 function discordLogin() {
     const state = Math.random().toString(36).slice(2);
     sessionStorage.setItem('discord_state', state);
-    const url = `https://discord.com/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT)}&response_type=token&scope=${DISCORD_SCOPE}&state=${state}`;
+    const url = `https://discord.com/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT)}&response_type=token&scope=${encodeURIComponent(DISCORD_SCOPE)}&state=${state}`;
     window.location.href = url;
 }
 
@@ -128,7 +172,6 @@ async function fetchDiscordUser(token) {
     } catch(e) { console.warn('Discord user fetch failed', e); }
 }
 
-// Handle OAuth callback — token is in the URL hash
 (function handleDiscordCallback() {
     const hash = window.location.hash.slice(1);
     const params = new URLSearchParams(hash);
