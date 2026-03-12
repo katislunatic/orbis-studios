@@ -93,6 +93,30 @@ if (savedTheme === 'light') {
     document.getElementById('themeDark').classList.remove('active');
 }
 
+// ===================== DISCORD LIVE MEMBER COUNT =====================
+(function fetchGTICCount() {
+    const GUILD_ID = '1385408756464226414';
+    const countEl = document.getElementById('gtic-count-text');
+    if (!countEl) return;
+
+    fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
+        .then(r => r.json())
+        .then(data => {
+            const total = data.members ? data.members.length : null;
+            // Widget API returns online members (capped at 100); label accordingly
+            if (typeof data.presence_count === 'number') {
+                countEl.textContent = `${data.presence_count.toLocaleString()} Online`;
+            } else if (total !== null) {
+                countEl.textContent = `${total.toLocaleString()} Online`;
+            } else {
+                countEl.textContent = 'Discord';
+            }
+        })
+        .catch(() => {
+            countEl.textContent = '700+ Members';
+        });
+})();
+
 // ===================== MODAL =====================
 function openPrivacy() { document.getElementById('privacyModal').style.display = 'block'; }
 function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
