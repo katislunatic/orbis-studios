@@ -152,6 +152,8 @@ function discordLogout() {
     sessionStorage.removeItem('discord_state');
     document.getElementById('discordLoginBtn').style.display = '';
     document.getElementById('discordUser').style.display = 'none';
+    document.getElementById('discordLoginBtnMobile').style.display = '';
+    document.getElementById('discordUserMobile').style.display = 'none';
     closeProfile();
 }
 
@@ -188,11 +190,17 @@ async function fetchDiscordUser(token) {
         // Store everything
         sessionStorage.setItem('discord_user', JSON.stringify({ user, connections, avatar, banner }));
 
-        // Update nav pill
+        // Update nav pill (desktop)
         document.getElementById('discordAvatar').src = avatar;
         document.getElementById('discordUsername').textContent = user.global_name || user.username;
         document.getElementById('discordLoginBtn').style.display = 'none';
         document.getElementById('discordUser').style.display = 'flex';
+
+        // Update nav (mobile)
+        document.getElementById('discordAvatarMobile').src = avatar;
+        document.getElementById('discordUsernameMobile').textContent = user.global_name || user.username;
+        document.getElementById('discordLoginBtnMobile').style.display = 'none';
+        document.getElementById('discordUserMobile').style.display = 'flex';
     } catch(e) { console.warn('Discord fetch failed', e); }
 }
 
