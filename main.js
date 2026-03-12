@@ -93,6 +93,26 @@ if (savedTheme === 'light') {
     document.getElementById('themeDark').classList.remove('active');
 }
 
+// ===================== SCROLLSPY =====================
+const sections = document.querySelectorAll('header, [id]');
+
+function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+        if (section.getBoundingClientRect().top <= 100) {
+            current = section.id || '';
+        }
+    });
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href').replace('#', '');
+        const matches = (href === '' || href === '#') ? current === '' : href === current;
+        link.classList.toggle('active', matches);
+        if (matches) moveSlider(link);
+    });
+}
+
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
 // ===================== DISCORD LIVE MEMBER COUNT =====================
 (function fetchGTICCount() {
     const GUILD_ID = '1385408756464226414';
