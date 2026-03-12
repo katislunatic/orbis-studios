@@ -97,21 +97,20 @@ if (savedTheme === 'light') {
 (function fetchGTICCount() {
     const GUILD_ID = '1385408756464226414';
     const TOTAL_MEMBERS = 700; // ← Update this manually when needed
-    const countEl = document.getElementById('gtic-count-text');
-    if (!countEl) return;
+    const membersEl = document.getElementById('gtic-members-text');
+    const onlineEl  = document.getElementById('gtic-online-text');
+    if (!membersEl || !onlineEl) return;
+
+    membersEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
 
     fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
         .then(r => r.json())
         .then(data => {
             const online = typeof data.presence_count === 'number' ? data.presence_count : null;
-            if (online !== null) {
-                countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members · ${online.toLocaleString()} Online`;
-            } else {
-                countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
-            }
+            onlineEl.textContent = online !== null ? `${online.toLocaleString()} Online` : '— Online';
         })
         .catch(() => {
-            countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
+            onlineEl.textContent = '— Online';
         });
 })();
 
