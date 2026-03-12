@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,303 +13,306 @@
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <a href="#" class="nav-logo">
-            <img src="Orbis_O_White.png" alt="Orbis">
-            ORBIS STUDIOS
-        </a>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-        <div class="nav-center" id="nav-links">
-            <div class="nav-slider" id="navSlider"></div>
-            <a href="#" class="active">Home</a>
-            <a href="#services">What We Do</a>
-            <a href="#works">Projects</a>
-            <a href="#about">About</a>
-            <a href="#pipeline">Pipeline</a>
-            <a href="#team">Team</a>
-        </div>
-        <div class="nav-right">
-            <div class="settings-wrap">
-                <button class="settings-btn" id="settingsBtn" aria-label="Settings">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                    </svg>
-                </button>
-                <div class="settings-dropdown" id="settingsDropdown">
-                    <span class="settings-label">Theme</span>
-                    <div class="theme-options">
-                        <div class="theme-opt active" id="themeDark" onclick="setTheme('dark')">
-                            <div class="theme-preview dark"></div>
-                            Dark
-                        </div>
-                        <div class="theme-opt" id="themeLight" onclick="setTheme('light')">
-                            <div class="theme-preview light"></div>
-                            Light
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="theme-flash" id="themeFlash"></div>
-
-    <!-- HERO -->
-    <header>
-        <div class="hero-grid"></div>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <img src="Orbis_White.png" alt="Orbis Studios" class="hero-logo">
-        <p class="hero-tagline">Innovation in Orbit</p>
-        <p class="hero-desc">A collective of developers building competitive leagues, Discord tools, and VR communities for the next generation of social gaming.</p>
-        <div class="hero-scroll-hint"><div class="scroll-line"></div></div>
-    </header>
-
-    <!-- STATS -->
-    <div class="stats-bar">
-        <div class="stat-item reveal">
-            <span class="stat-num">2M+</span>
-            <span class="stat-label">Active Players</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-1">
-            <span class="stat-num">140B+</span>
-            <span class="stat-label">Total Sessions</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-2">
-            <span class="stat-num">12%</span>
-            <span class="stat-label">Platform DAU</span>
-        </div>
+```
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-logo">
+        <img src="Orbis_O_White.png" alt="Orbis">
+        ORBIS STUDIOS
+    </a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div class="nav-center" id="nav-links">
+        <div class="nav-slider" id="navSlider"></div>
+        <a href="#" class="active">Home</a>
+        <a href="#services">What We Do</a>
+        <a href="#works">Projects</a>
+        <a href="#about">About</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#team">Team</a>
     </div>
-
-    <!-- WHAT WE DO -->
-    <div class="services-wrap" id="services">
-        <div class="section">
-            <p class="section-eyebrow reveal">What We Do</p>
-            <h2 class="section-title reveal reveal-delay-1">Our <em>Expertise</em></h2>
-            <div class="services-grid">
-                <div class="service-card reveal reveal-delay-1">
-                    <div class="service-icon">🤖</div>
-                    <h3>Discord Bot Development</h3>
-                    <p>Custom bots for league operations, automated transactions, moderation, and community management.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-2">
-                    <div class="service-icon">🏆</div>
-                    <h3>League Operations</h3>
-                    <p>Full end-to-end competitive league infrastructure — seasons, rankings, match management, and more.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-3">
-                    <div class="service-icon">🥽</div>
-                    <h3>VR Community Building</h3>
-                    <p>Growing and managing engaged VR communities with structured events and social experiences.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-4">
-                    <div class="service-icon">🌐</div>
-                    <h3>Web Development</h3>
-                    <p>Polished websites and web apps built for leagues, studios, and gaming communities.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-5">
-                    <div class="service-icon">🎮</div>
-                    <h3>Game Development</h3>
-                    <p>Building immersive game experiences and mechanics for VR platforms and beyond.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PROJECTS -->
-    <div class="section" id="works">
-        <p class="section-eyebrow reveal">Our Work</p>
-        <h2 class="section-title reveal reveal-delay-1">Top <em>Projects</em></h2>
-        <div class="works-grid">
-            <div class="work-card reveal reveal-delay-1">
-                <div class="work-thumb">
-                    <img src="GTIC.png" alt="GTIC">
-                </div>
-                <div class="work-body">
-                    <p class="work-tag"><span></span>Competitive League &nbsp;·&nbsp; VR Community</p>
-                    <h3>Gorilla Tag Intermediate COMP</h3>
-                    <p>Welcome to GTIC! 🦍 — A competitive Gorilla Tag league open to all ranks. Compete in seasons and climb the ranks! 🏆</p>
-                    <div class="work-footer">
-                        <span class="work-badge">700 Members</span>
-                        <div class="work-actions">
-                            <a href="https://gtic-home.netlify.app/" target="_blank" class="btn-sm">Website</a>
-                            <a href="https://discord.gg/hB4V4ywqxj" target="_blank" class="btn-sm">Discord</a>
-                        </div>
+    <div class="nav-right">
+        <div class="settings-wrap">
+            <button class="settings-btn" id="settingsBtn" aria-label="Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+            <div class="settings-dropdown" id="settingsDropdown">
+                <span class="settings-label">Theme</span>
+                <div class="theme-options">
+                    <div class="theme-opt active" id="themeDark" onclick="setTheme('dark')">
+                        <div class="theme-preview dark"></div>
+                        Dark
                     </div>
-                </div>
-            </div>
-            <div class="work-card reveal reveal-delay-2">
-                <div class="work-thumb">
-                    <img src="NLG_Banner.png" alt="Next Level Gorillas">
-                </div>
-                <div class="work-body">
-                    <p class="work-tag"><span></span>Competitive VR Team &nbsp;·&nbsp; Gorilla Tag</p>
-                    <h3>Next Level Gorillas</h3>
-                    <p>Taking the Gorilla Tag experience to the next level with advanced playstyles and a dedicated community.</p>
-                    <div class="work-footer">
-                        <span class="work-badge">Active Community</span>
-                        <div class="work-actions">
-                            <a href="https://jc5004.website3.me/" target="_blank" class="btn-sm">Website</a>
-                            <a href="https://discord.com/invite/mxevAh6eZZ" target="_blank" class="btn-sm">Discord</a>
-                        </div>
+                    <div class="theme-opt" id="themeLight" onclick="setTheme('light')">
+                        <div class="theme-preview light"></div>
+                        Light
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</nav>
 
-    <!-- ABOUT -->
-    <div class="section" id="about">
-        <div class="about-grid">
-            <div class="about-text reveal">
-                <span class="eyebrow">About Orbis</span>
-                <h2>Who <em style="color:var(--cyan);font-style:normal;">We Are</em></h2>
-                <p>Orbis Studios is a collective of developers dedicated to pushing the boundaries of social gaming through high-stakes competitive environments.</p>
-                <p>We build ecosystems where players can thrive, compete, and connect in the next generation of VR.</p>
-                <a href="#works" class="btn-main">View Our Work →</a>
+<div class="theme-flash" id="themeFlash"></div>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- HERO -->
+<header>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <img src="Orbis_White.png" alt="Orbis Studios" class="hero-logo">
+    <p class="hero-tagline">Innovation in Orbit</p>
+    <p class="hero-desc">A collective of developers building competitive leagues, Discord tools, and VR communities for the next generation of social gaming.</p>
+    <div class="hero-scroll-hint"><div class="scroll-line"></div></div>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stat-item reveal">
+        <span class="stat-num">2M+</span>
+        <span class="stat-label">Active Players</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-num">140B+</span>
+        <span class="stat-label">Total Sessions</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-num">12%</span>
+        <span class="stat-label">Platform DAU</span>
+    </div>
+</div>
+
+<!-- WHAT WE DO -->
+<div class="services-wrap" id="services">
+    <div class="section">
+        <p class="section-eyebrow reveal">What We Do</p>
+        <h2 class="section-title reveal reveal-delay-1">Our <em>Expertise</em></h2>
+        <div class="services-grid">
+            <div class="service-card reveal reveal-delay-1">
+                <div class="service-icon">🤖</div>
+                <h3>Discord Bot Development</h3>
+                <p>Custom bots for league operations, automated transactions, moderation, and community management.</p>
             </div>
-            <div class="about-visual reveal reveal-delay-1">
-                <div class="about-visual-grid"></div>
-                <div class="about-visual-ring ring1"></div>
-                <div class="about-visual-ring ring2"></div>
-                <div class="about-visual-ring ring3"></div>
-                <img src="Orbis_O_White.png" alt="Orbis Studios">
+            <div class="service-card reveal reveal-delay-2">
+                <div class="service-icon">🏆</div>
+                <h3>League Operations</h3>
+                <p>Full end-to-end competitive league infrastructure — seasons, rankings, match management, and more.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-3">
+                <div class="service-icon">🥽</div>
+                <h3>VR Community Building</h3>
+                <p>Growing and managing engaged VR communities with structured events and social experiences.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-4">
+                <div class="service-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>Polished websites and web apps built for leagues, studios, and gaming communities.</p>
+            </div>
+            <div class="service-card reveal reveal-delay-5">
+                <div class="service-icon">🎮</div>
+                <h3>Game Development</h3>
+                <p>Building immersive game experiences and mechanics for VR platforms and beyond.</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- PIPELINE -->
-    <div class="pipeline-wrap" id="pipeline">
-        <div class="pipeline-inner">
-            <div class="pipeline-header reveal">
-                <p class="section-eyebrow" style="display:block;margin-bottom:12px;">Coming Soon</p>
-                <h2 class="section-title" style="margin-bottom:16px;">Project <em>Pipeline</em></h2>
-                <p class="sub">What we're currently building behind the scenes.</p>
+<!-- PROJECTS -->
+<div class="section" id="works">
+    <p class="section-eyebrow reveal">Our Work</p>
+    <h2 class="section-title reveal reveal-delay-1">Top <em>Projects</em></h2>
+    <div class="works-grid">
+        <div class="work-card reveal reveal-delay-1">
+            <div class="work-thumb">
+                <img src="GTIC.png" alt="GTIC">
             </div>
-            <div class="pipeline-list">
-                <div class="pipeline-item reveal reveal-delay-1">
-                    <div class="pipeline-top">
-                        <div class="pipeline-info">
-                            <h4>GTIC Transactions</h4>
-                            <p>Automated transaction bot for managing team and league assets.</p>
-                        </div>
-                        <div class="pipeline-meta">
-                            <div class="status-pill"><div class="status-dot"></div>In Development</div>
-                            <span class="pipeline-eta">Est. Q2 2026</span>
-                        </div>
+            <div class="work-body">
+                <p class="work-tag"><span></span>Competitive League &nbsp;·&nbsp; VR Community</p>
+                <h3>Gorilla Tag Intermediate COMP</h3>
+                <p>Welcome to GTIC! 🦍 — A competitive Gorilla Tag league open to all ranks. Compete in seasons and climb the ranks! 🏆</p>
+                <div class="work-footer">
+                    <span class="work-badge">700 Members</span>
+                    <div class="work-actions">
+                        <a href="https://gtic-home.netlify.app/" target="_blank" class="btn-sm">Website</a>
+                        <a href="https://discord.gg/hB4V4ywqxj" target="_blank" class="btn-sm">Discord</a>
                     </div>
-                    <div class="progress-label"><span>Progress</span><span>75%</span></div>
-                    <div class="progress-track"><div class="progress-fill" data-progress="75"></div></div>
                 </div>
-                <div class="pipeline-item reveal reveal-delay-2">
-                    <div class="pipeline-top">
-                        <div class="pipeline-info">
-                            <h4>GTIC Moderation</h4>
-                            <p>Automated moderation bot for moderating the server and users.</p>
-                        </div>
-                        <div class="pipeline-meta">
-                            <div class="status-pill"><div class="status-dot"></div>In Development</div>
-                            <span class="pipeline-eta">Est. Q2 2026</span>
-                        </div>
+            </div>
+        </div>
+        <div class="work-card reveal reveal-delay-2">
+            <div class="work-thumb">
+                <img src="NLG_Banner.png" alt="Next Level Gorillas">
+            </div>
+            <div class="work-body">
+                <p class="work-tag"><span></span>Competitive VR Team &nbsp;·&nbsp; Gorilla Tag</p>
+                <h3>Next Level Gorillas</h3>
+                <p>Taking the Gorilla Tag experience to the next level with advanced playstyles and a dedicated community.</p>
+                <div class="work-footer">
+                    <span class="work-badge">Active Community</span>
+                    <div class="work-actions">
+                        <a href="https://jc5004.website3.me/" target="_blank" class="btn-sm">Website</a>
+                        <a href="https://discord.com/invite/mxevAh6eZZ" target="_blank" class="btn-sm">Discord</a>
                     </div>
-                    <div class="progress-label"><span>Progress</span><span>90%</span></div>
-                    <div class="progress-track"><div class="progress-fill" data-progress="90"></div></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- TEAM -->
-    <div class="section" id="team">
-        <p class="section-eyebrow reveal">The People</p>
-        <h2 class="section-title reveal reveal-delay-1">Meet the <em>Team</em></h2>
-        <div class="team-grid">
-            <div class="team-card reveal reveal-delay-1">
-                <div class="team-avatar">K</div>
-                <h4>Kat</h4>
-                <p class="team-role">Founder & CEO</p>
+<!-- ABOUT -->
+<div class="section" id="about">
+    <div class="about-grid">
+        <div class="about-text reveal">
+            <span class="eyebrow">About Orbis</span>
+            <h2>Who <em style="color:var(--cyan);font-style:normal;">We Are</em></h2>
+            <p>Orbis Studios is a collective of developers dedicated to pushing the boundaries of social gaming through high-stakes competitive environments.</p>
+            <p>We build ecosystems where players can thrive, compete, and connect in the next generation of VR.</p>
+            <a href="#works" class="btn-main">View Our Work →</a>
+        </div>
+        <div class="about-visual reveal reveal-delay-1">
+            <div class="about-visual-grid"></div>
+            <div class="about-visual-ring ring1"></div>
+            <div class="about-visual-ring ring2"></div>
+            <div class="about-visual-ring ring3"></div>
+            <img src="Orbis_O_White.png" alt="Orbis Studios">
+        </div>
+    </div>
+</div>
+
+<!-- PIPELINE -->
+<div class="pipeline-wrap" id="pipeline">
+    <div class="pipeline-inner">
+        <div class="pipeline-header reveal">
+            <p class="section-eyebrow" style="display:block;margin-bottom:12px;">Coming Soon</p>
+            <h2 class="section-title" style="margin-bottom:16px;">Project <em>Pipeline</em></h2>
+            <p class="sub">What we're currently building behind the scenes.</p>
+        </div>
+        <div class="pipeline-list">
+            <div class="pipeline-item reveal reveal-delay-1">
+                <div class="pipeline-top">
+                    <div class="pipeline-info">
+                        <h4>GTIC Transactions</h4>
+                        <p>Automated transaction bot for managing team and league assets.</p>
+                    </div>
+                    <div class="pipeline-meta">
+                        <div class="status-pill"><div class="status-dot"></div>In Development</div>
+                        <span class="pipeline-eta">Est. Q2 2026</span>
+                    </div>
+                </div>
+                <div class="progress-label"><span>Progress</span><span>75%</span></div>
+                <div class="progress-track"><div class="progress-fill" data-progress="75"></div></div>
             </div>
-            <div class="team-card reveal reveal-delay-2">
-                <div class="team-avatar">CW</div>
-                <h4>Caleb Wren</h4>
-                <p class="team-role">Lead Developer</p>
-            </div>
-            <div class="team-card reveal reveal-delay-3">
-                <div class="team-avatar">AP</div>
-                <h4>Axel Prime</h4>
-                <p class="team-role">Backend Developer</p>
-            </div>
-            <div class="team-card reveal reveal-delay-4">
-                <div class="team-avatar">NH</div>
-                <h4>Niko Harlan</h4>
-                <p class="team-role">Systems Engineer</p>
-            </div>
-            <div class="team-card reveal reveal-delay-5">
-                <div class="team-avatar">TM</div>
-                <h4>Talia Mousse</h4>
-                <p class="team-role">UI/UX Developer</p>
-            </div>
-            <div class="team-card reveal reveal-delay-5">
-                <div class="team-avatar">CV</div>
-                <h4>Cassidy Vail</h4>
-                <p class="team-role">Creative Director</p>
+            <div class="pipeline-item reveal reveal-delay-2">
+                <div class="pipeline-top">
+                    <div class="pipeline-info">
+                        <h4>GTIC Moderation</h4>
+                        <p>Automated moderation bot for moderating the server and users.</p>
+                    </div>
+                    <div class="pipeline-meta">
+                        <div class="status-pill"><div class="status-dot"></div>In Development</div>
+                        <span class="pipeline-eta">Est. Q2 2026</span>
+                    </div>
+                </div>
+                <div class="progress-label"><span>Progress</span><span>90%</span></div>
+                <div class="progress-track"><div class="progress-fill" data-progress="90"></div></div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <img src="Orbis_White.png" alt="Orbis Studios">
-                <p>Building the next generation of social and competitive VR ecosystems.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigate</h4>
-                <ul>
-                    <li><a href="#services">What We Do</a></li>
-                    <li><a href="#works">Projects</a></li>
-                    <li><a href="#pipeline">Pipeline</a></li>
-                    <li><a href="#team">Team</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a onclick="openPrivacy()">Privacy Policy</a></li>
-                </ul>
-            </div>
+<!-- TEAM -->
+<div class="section" id="team">
+    <p class="section-eyebrow reveal">The People</p>
+    <h2 class="section-title reveal reveal-delay-1">Meet the <em>Team</em></h2>
+    <div class="team-grid">
+        <div class="team-card reveal reveal-delay-1">
+            <div class="team-avatar">K</div>
+            <h4>Kat</h4>
+            <p class="team-role">Founder & CEO</p>
         </div>
-        <div class="footer-bottom">
-            <p>Orbis Studios & More Inc — Copyright 2026</p>
+        <div class="team-card reveal reveal-delay-2">
+            <div class="team-avatar">CW</div>
+            <h4>Caleb Wren</h4>
+            <p class="team-role">Lead Developer</p>
         </div>
-    </footer>
-
-    <!-- PRIVACY MODAL -->
-    <div id="privacyModal" class="modal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closePrivacy()">×</button>
-            <h2>Privacy Policy</h2>
-            <p style="color:#555;margin-top:4px;font-size:0.85rem;">Last Updated: February 2026</p>
-            <p style="margin-top:20px;">Orbis Studios values your privacy. This policy explains how we handle data across our games and Discord bots.</p>
-            <h3>1. Data Collection</h3>
-            <p>We collect Discord IDs and game-specific statistics to manage competitive rankings and automated league transactions.</p>
-            <h3>2. Usage</h3>
-            <p>Your data is used strictly for league management, fair-play verification, and enhancing the competitive experience.</p>
-            <h3>3. Security</h3>
-            <p>We do not sell your data. We use industry-standard encryption to protect all stored information.</p>
+        <div class="team-card reveal reveal-delay-3">
+            <div class="team-avatar">AP</div>
+            <h4>Axel Prime</h4>
+            <p class="team-role">Backend Developer</p>
+        </div>
+        <div class="team-card reveal reveal-delay-4">
+            <div class="team-avatar">NH</div>
+            <h4>Niko Harlan</h4>
+            <p class="team-role">Systems Engineer</p>
+        </div>
+        <div class="team-card reveal reveal-delay-5">
+            <div class="team-avatar">TM</div>
+            <h4>Talia Mousse</h4>
+            <p class="team-role">UI/UX Developer</p>
+        </div>
+        <div class="team-card reveal reveal-delay-5">
+            <div class="team-avatar">CV</div>
+            <h4>Cassidy Vail</h4>
+            <p class="team-role">Creative Director</p>
         </div>
     </div>
+</div>
 
-    <script src="main.js"></script>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="Orbis_White.png" alt="Orbis Studios">
+            <p>Building the next generation of social and competitive VR ecosystems.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navigate</h4>
+            <ul>
+                <li><a href="#services">What We Do</a></li>
+                <li><a href="#works">Projects</a></li>
+                <li><a href="#pipeline">Pipeline</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+                <li><a onclick="openPrivacy()">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Orbis Studios & More Inc — Copyright 2026</p>
+    </div>
+</footer>
+
+<!-- PRIVACY MODAL -->
+<div id="privacyModal" class="modal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closePrivacy()">×</button>
+        <h2>Privacy Policy</h2>
+        <p style="color:#555;margin-top:4px;font-size:0.85rem;">Last Updated: February 2026</p>
+        <p style="margin-top:20px;">Orbis Studios values your privacy. This policy explains how we handle data across our games and Discord bots.</p>
+        <h3>1. Data Collection</h3>
+        <p>We collect Discord IDs and game-specific statistics to manage competitive rankings and automated league transactions.</p>
+        <h3>2. Usage</h3>
+        <p>Your data is used strictly for league management, fair-play verification, and enhancing the competitive experience.</p>
+        <h3>3. Security</h3>
+        <p>We do not sell your data. We use industry-standard encryption to protect all stored information.</p>
+    </div>
+</div>
+
+<script src="main.js"></script>
+```
 
 </body>
 </html>
