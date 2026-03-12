@@ -345,12 +345,13 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
 
 /* ===================== MODAL ===================== */
-.modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.92); overflow-y: auto; padding: 40px 20px; backdrop-filter: blur(10px); }
-.modal-box { background: var(--card); border: 1px solid rgba(0,174,239,0.3); border-radius: 24px; padding: 48px; max-width: 720px; margin: 0 auto; color: #aaa; position: relative; }
+.modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.85); overflow-y: auto; padding: 40px 20px; backdrop-filter: blur(12px); align-items: center; justify-content: center; }
+.modal[style*="block"] { display: flex !important; }
+.modal-box { background: var(--card); border: 1px solid rgba(0,174,239,0.3); border-radius: 24px; padding: 48px; max-width: 720px; width: 100%; margin: auto; color: #aaa; position: relative; }
 .modal-box h2 { font-family: 'Syne', sans-serif; color: var(--cyan); margin-bottom: 8px; }
 .modal-box h3 { font-family: 'Syne', sans-serif; color: white; margin: 28px 0 10px; font-size: 1rem; }
-.modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #555; font-size: 1.6rem; cursor: pointer; transition: color 0.2s; }
-.modal-close:hover { color: white; }
+.modal-close { position: absolute; top: 16px; right: 20px; background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: #888; font-size: 1.1rem; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.modal-close:hover { background: rgba(255,255,255,0.12); color: white; }
 
 /* ===================== MOBILE NAV OVERLAY ===================== */
 .nav-overlay {
@@ -398,19 +399,20 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 body.light-mode #discordUsername { color: #111; }
 
 /* ===================== PROFILE MODAL ===================== */
-.profile-modal-box { padding: 0; overflow: hidden; max-width: 440px; width: 100%; }
-.profile-banner { width: 100%; height: 110px; background: linear-gradient(135deg, #5865F2, #3b2fcf); background-size: cover; background-position: center; }
-.profile-header { display: flex; align-items: flex-end; gap: 16px; padding: 0 24px 16px; margin-top: -36px; border-bottom: 1px solid var(--border); }
-.profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; border: 4px solid var(--card); object-fit: cover; flex-shrink: 0; }
-.profile-name-wrap { padding-bottom: 4px; }
-.profile-name-wrap h2 { font-size: 1.2rem; margin: 0; }
-.profile-tag { font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0; }
-.profile-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 18px; }
-.profile-section { display: flex; flex-direction: column; gap: 8px; }
-.profile-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
-.profile-value { font-size: 0.9rem; }
+.profile-modal-box { padding: 0; overflow: hidden; max-width: 520px; width: 100%; border-radius: 16px; }
+.profile-banner { width: 100%; height: 140px; background: linear-gradient(135deg, #5865F2, #3b2fcf); background-size: cover; background-position: center; }
+.profile-header { display: flex; align-items: flex-end; gap: 20px; padding: 0 32px 20px; margin-top: -44px; border-bottom: 1px solid var(--border); }
+.profile-avatar-lg { width: 88px; height: 88px; border-radius: 50%; border: 5px solid var(--card); object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+.profile-name-wrap { padding-bottom: 6px; }
+.profile-name-wrap h2 { font-size: 1.4rem; margin: 0; font-weight: 700; }
+.profile-tag { font-size: 0.85rem; color: var(--text-muted); margin: 4px 0 0; }
+.profile-body { padding: 24px 32px; display: flex; flex-direction: column; gap: 22px; }
+.profile-section { display: flex; flex-direction: column; gap: 10px; }
+.profile-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+.profile-value { font-size: 0.95rem; }
 .profile-connections { display: flex; flex-wrap: wrap; gap: 8px; }
-.conn-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; }
+.conn-pill { display: inline-flex; align-items: center; gap: 7px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 7px 14px; font-size: 0.82rem; font-weight: 500; transition: border-color 0.2s; }
+.conn-pill:hover { border-color: rgba(255,255,255,0.2); }
 .conn-pill img { width: 16px; height: 16px; object-fit: contain; }
-.discord-logout-full { width: calc(100% - 48px); margin: 0 24px 24px; background: rgba(237,66,69,0.12); border: 1px solid rgba(237,66,69,0.3); color: #ed4245; border-radius: 8px; padding: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: inherit; }
-.discord-logout-full:hover { background: rgba(237,66,69,0.22); }
+.discord-logout-full { width: calc(100% - 64px); margin: 0 32px 28px; background: rgba(237,66,69,0.1); border: 1px solid rgba(237,66,69,0.25); color: #ed4245; border-radius: 10px; padding: 12px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s; font-family: inherit; letter-spacing: 0.3px; }
+.discord-logout-full:hover { background: rgba(237,66,69,0.2); border-color: rgba(237,66,69,0.5); }
