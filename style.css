@@ -94,6 +94,7 @@ body.light-mode .nav-center { background: rgba(0,0,0,0.04); }
     background: var(--cyan);
     border-radius: 100px;
     top: 5px;
+    width: 0;
     transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
     z-index: 0;
@@ -120,15 +121,30 @@ body.light-mode .nav-center a.active { color: white; }
     .nav-center {
         position: fixed; top: 0; right: -100%; left: auto; transform: none;
         height: 100vh; width: 72%;
-        background: rgba(8,8,12,0.98);
-        flex-direction: column; justify-content: center; align-items: center;
-        gap: 8px; border-radius: 0;
-        padding: 40px 20px;
+        background: rgba(8,8,12,0.97);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        flex-direction: column; justify-content: center; align-items: stretch;
+        gap: 4px; border-radius: 0;
+        padding: 100px 20px 60px;
         transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        border-left: 1px solid var(--border); border-top: none; border-right: none; border-bottom: none;
+        border-left: 1px solid rgba(255,255,255,0.08);
+        border-top: none; border-right: none; border-bottom: none;
     }
     .nav-center.mobile-active { right: 0; }
-    .nav-center a { font-size: 1rem; padding: 14px 30px; border-radius: 12px; }
+    /* Hide the sliding pill indicator on mobile */
+    .nav-slider { display: none; }
+    .nav-center a {
+        font-size: 0.85rem; padding: 14px 20px; border-radius: 12px;
+        color: #666; text-align: left;
+        border: 1px solid transparent;
+    }
+    .nav-center a:hover { color: white; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+    .nav-center a.active {
+        color: var(--cyan);
+        background: rgba(0,174,239,0.08);
+        border-color: rgba(0,174,239,0.2);
+    }
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -329,6 +345,32 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 .modal-box h3 { font-family: 'Syne', sans-serif; color: white; margin: 28px 0 10px; font-size: 1rem; }
 .modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #555; font-size: 1.6rem; cursor: pointer; transition: color 0.2s; }
 .modal-close:hover { color: white; }
+
+/* ===================== MOBILE NAV OVERLAY ===================== */
+.nav-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.nav-overlay.active { opacity: 1; }
+
+.nav-center::before {
+    content: 'NAVIGATE';
+    font-family: 'Syne', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #333;
+    padding: 0 20px;
+    margin-bottom: 8px;
+    display: none;
+}
+@media (max-width: 860px) {
+    .nav-center::before { display: block; }
+}
 
 /* ===================== REVEAL ===================== */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
