@@ -416,3 +416,11 @@ body.light-mode #discordUsername { color: #111; }
 .conn-pill img { width: 15px; height: 15px; object-fit: contain; }
 .discord-logout-full { width: calc(100% - 60px); margin: 0 30px 28px; background: rgba(237,66,69,0.1); border: 1px solid rgba(237,66,69,0.25); color: #ed4245; border-radius: 10px; padding: 11px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s; font-family: inherit; letter-spacing: 0.3px; }
 .discord-logout-full:hover { background: rgba(237,66,69,0.2); border-color: rgba(237,66,69,0.5); }
+
+/* ===================== EMAIL SPOILER ===================== */
+.email-spoiler { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; position: relative; border-radius: 6px; padding: 2px 4px; transition: background 0.2s; }
+.email-spoiler:hover { background: rgba(255,255,255,0.05); }
+.email-blur { filter: blur(6px); transition: filter 0.4s ease, opacity 0.4s ease; user-select: none; font-size: 0.9rem; color: var(--body-color); }
+.email-hint { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.5px; transition: opacity 0.3s; white-space: nowrap; }
+.email-spoiler.revealed .email-blur { filter: blur(0); }
+.email-spoiler.revealed .email-hint { opacity: 0; width: 0; overflow: hidden; }
