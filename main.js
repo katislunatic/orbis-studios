@@ -96,24 +96,22 @@ if (savedTheme === 'light') {
 // ===================== DISCORD LIVE MEMBER COUNT =====================
 (function fetchGTICCount() {
     const GUILD_ID = '1385408756464226414';
+    const TOTAL_MEMBERS = 700; // ← Update this manually when needed
     const countEl = document.getElementById('gtic-count-text');
     if (!countEl) return;
 
     fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
         .then(r => r.json())
         .then(data => {
-            const total = data.members ? data.members.length : null;
-            // Widget API returns online members (capped at 100); label accordingly
-            if (typeof data.presence_count === 'number') {
-                countEl.textContent = `${data.presence_count.toLocaleString()} Online`;
-            } else if (total !== null) {
-                countEl.textContent = `${total.toLocaleString()} Online`;
+            const online = typeof data.presence_count === 'number' ? data.presence_count : null;
+            if (online !== null) {
+                countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members · ${online.toLocaleString()} Online`;
             } else {
-                countEl.textContent = 'Discord';
+                countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
             }
         })
         .catch(() => {
-            countEl.textContent = '700+ Members';
+            countEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
         });
 })();
 
