@@ -424,3 +424,9 @@ body.light-mode #discordUsername { color: #111; }
 .email-hint { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.5px; transition: opacity 0.3s; white-space: nowrap; }
 .email-spoiler.revealed .email-blur { filter: blur(0); }
 .email-spoiler.revealed .email-hint { opacity: 0; width: 0; overflow: hidden; }
+
+/* ===================== MOBILE DISCORD AUTH ===================== */
+.mobile-discord-auth { display: none; padding: 20px 20px 0; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 12px; }
+.mobile-discord-auth .discord-login-btn { width: 100%; justify-content: center; padding: 12px; font-size: 0.88rem; border-radius: 12px; }
+.mobile-discord-user { width: 100%; justify-content: center; border-radius: 12px; padding: 10px 16px; }
+@media (max-width: 860px) { .mobile-discord-auth { display: block; } }
