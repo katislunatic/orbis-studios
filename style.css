@@ -429,4 +429,4 @@ body.light-mode #discordUsername { color: #111; }
 .mobile-discord-auth { display: none; padding: 20px 20px 0; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 12px; }
 .mobile-discord-auth .discord-login-btn { width: 100%; justify-content: center; padding: 12px; font-size: 0.88rem; border-radius: 12px; }
 .mobile-discord-user { width: 100%; justify-content: center; border-radius: 12px; padding: 10px 16px; }
-@media (max-width: 860px) { .mobile-discord-auth { display: block; } }
+@media (max-width: 860px) { .mobile-discord-auth { display: block; } #discord-auth { display: none; } }
