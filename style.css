@@ -345,7 +345,7 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
 
 /* ===================== MODAL ===================== */
-.modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); align-items: flex-start; justify-content: center; padding: 12vh 20px 40px; overflow-y: auto; }
+.modal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); align-items: flex-start; justify-content: center; padding: 18vh 20px 40px; overflow-y: auto; }
 .modal[style*="block"] { display: flex !important; }
 .modal-box { background: var(--card); border: 1px solid rgba(0,174,239,0.3); border-radius: 24px; padding: 48px; max-width: 720px; width: 100%; color: #aaa; position: relative; }
 .modal-box h2 { font-family: 'Syne', sans-serif; color: var(--cyan); margin-bottom: 8px; }
@@ -399,14 +399,14 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
 body.light-mode #discordUsername { color: #111; }
 
 /* ===================== PROFILE MODAL ===================== */
-.profile-modal-box { padding: 0; overflow: hidden; max-width: 500px; width: 100%; border-radius: 16px; }
-.profile-banner { width: 100%; height: 130px; background: linear-gradient(135deg, #5865F2, #3b2fcf); background-size: cover; background-position: center; }
-.profile-header { padding: 0 24px 16px; border-bottom: 1px solid var(--border); }
-.profile-avatar-lg { width: 80px; height: 80px; border-radius: 50%; border: 6px solid var(--card); object-fit: cover; display: block; margin-top: -40px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-.profile-name-wrap { margin-top: 10px; }
-.profile-name-wrap h2 { font-size: 1.3rem; margin: 0; font-weight: 700; color: var(--body-color); }
+.profile-modal-box { padding: 0; overflow: hidden; max-width: 580px; width: 100%; border-radius: 18px; }
+.profile-banner { width: 100%; height: 155px; background: linear-gradient(135deg, #5865F2, #3b2fcf); background-size: cover; background-position: center; }
+.profile-header { padding: 0 30px 20px; border-bottom: 1px solid var(--border); }
+.profile-avatar-lg { width: 96px; height: 96px; border-radius: 50%; border: 6px solid var(--card); object-fit: cover; display: block; margin-top: -48px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.profile-name-wrap { margin-top: 12px; }
+.profile-name-wrap h2 { font-size: 1.5rem; margin: 0; font-weight: 700; color: var(--body-color); }
 .profile-tag { font-size: 0.82rem; color: var(--text-muted); margin: 3px 0 0; display: block; }
-.profile-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 18px; }
+.profile-body { padding: 22px 30px; display: flex; flex-direction: column; gap: 18px; }
 .profile-section { display: flex; flex-direction: column; gap: 8px; }
 .profile-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
 .profile-value { font-size: 0.9rem; color: var(--body-color); }
@@ -414,5 +414,5 @@ body.light-mode #discordUsername { color: #111; }
 .conn-pill { display: inline-flex; align-items: center; gap: 7px; background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 7px 14px; font-size: 0.81rem; font-weight: 500; transition: border-color 0.2s; color: var(--body-color); }
 .conn-pill:hover { border-color: rgba(255,255,255,0.25); }
 .conn-pill img { width: 15px; height: 15px; object-fit: contain; }
-.discord-logout-full { width: calc(100% - 48px); margin: 0 24px 24px; background: rgba(237,66,69,0.1); border: 1px solid rgba(237,66,69,0.25); color: #ed4245; border-radius: 10px; padding: 11px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s; font-family: inherit; letter-spacing: 0.3px; }
+.discord-logout-full { width: calc(100% - 60px); margin: 0 30px 28px; background: rgba(237,66,69,0.1); border: 1px solid rgba(237,66,69,0.25); color: #ed4245; border-radius: 10px; padding: 11px; font-size: 0.87rem; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s; font-family: inherit; letter-spacing: 0.3px; }
 .discord-logout-full:hover { background: rgba(237,66,69,0.2); border-color: rgba(237,66,69,0.5); }
