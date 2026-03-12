@@ -328,6 +328,32 @@
     </div>
 </div>
 
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="modal">
+    <div class="modal-box profile-modal-box">
+        <button class="modal-close" onclick="closeProfile()">×</button>
+        <div class="profile-banner" id="profileBanner"></div>
+        <div class="profile-header">
+            <img id="profileAvatar" src="" alt="" class="profile-avatar-lg">
+            <div class="profile-name-wrap">
+                <h2 id="profileDisplayName"></h2>
+                <span id="profileUsername" class="profile-tag"></span>
+            </div>
+        </div>
+        <div class="profile-body">
+            <div class="profile-section">
+                <span class="profile-label">Email</span>
+                <span id="profileEmail" class="profile-value"></span>
+            </div>
+            <div class="profile-section">
+                <span class="profile-label">Connected Accounts</span>
+                <div id="profileConnections" class="profile-connections"></div>
+            </div>
+        </div>
+        <button class="discord-logout-full" onclick="discordLogout()">Log Out</button>
+    </div>
+</div>
+
 <script src="main.js"></script>
 
 </body>
