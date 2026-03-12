@@ -32,9 +32,6 @@ hamburger.addEventListener('click', () => {
 
 allLinks.forEach(link => {
     link.addEventListener('click', () => {
-        allLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        moveSlider(link);
         hamburger.classList.remove('open');
         navLinks.classList.remove('mobile-active');
     });
@@ -94,18 +91,23 @@ if (savedTheme === 'light') {
 }
 
 // ===================== SCROLLSPY =====================
-const sections = document.querySelectorAll('header, [id]');
+const spySections = [
+    { id: '',         el: document.querySelector('header') },
+    { id: 'services', el: document.getElementById('services') },
+    { id: 'works',    el: document.getElementById('works') },
+    { id: 'about',    el: document.getElementById('about') },
+    { id: 'pipeline', el: document.getElementById('pipeline') },
+    { id: 'team',     el: document.getElementById('team') },
+];
 
 function updateActiveNav() {
     let current = '';
-    sections.forEach(section => {
-        if (section.getBoundingClientRect().top <= 100) {
-            current = section.id || '';
-        }
+    spySections.forEach(({ id, el }) => {
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
     });
     allLinks.forEach(link => {
         const href = link.getAttribute('href').replace('#', '');
-        const matches = (href === '' || href === '#') ? current === '' : href === current;
+        const matches = href === current;
         link.classList.toggle('active', matches);
         if (matches) moveSlider(link);
     });
