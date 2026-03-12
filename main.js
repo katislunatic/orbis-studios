@@ -212,8 +212,20 @@ function openProfile() {
     document.getElementById('profileDisplayName').textContent = user.global_name || user.username;
     document.getElementById('profileUsername').textContent = `@${user.username}`;
 
-    // Email
-    document.getElementById('profileEmail').textContent = user.email || 'Not available';
+    // Email — spoiler reveal
+    const emailEl = document.getElementById('profileEmail');
+    emailEl.innerHTML = '';
+    const spoiler = document.createElement('span');
+    spoiler.className = 'email-spoiler';
+    spoiler.dataset.revealed = 'false';
+    spoiler.innerHTML = `<span class="email-blur">${user.email || 'Not available'}</span><span class="email-hint">Click to reveal</span>`;
+    spoiler.addEventListener('click', () => {
+        if (spoiler.dataset.revealed === 'false') {
+            spoiler.dataset.revealed = 'true';
+            spoiler.classList.add('revealed');
+        }
+    });
+    emailEl.appendChild(spoiler);
 
     // Connections
     const connWrap = document.getElementById('profileConnections');
