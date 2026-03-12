@@ -1,54 +1,56 @@
-// ===================== iOS LIQUID GLASS DETECTION =====================
+// ===================== iOS DETECTION =====================
 (function() {
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
 (navigator.platform === ‘MacIntel’ && navigator.maxTouchPoints > 1);
-if (isIOS) {
-document.body.classList.add(‘ios-glass’);
-}
+if (isIOS) document.body.classList.add(‘ios-glass’);
 })();
 
-// ===================== NAV SLIDER =====================
+// ===================== NAV =====================
 const hamburger = document.getElementById(‘hamburger’);
-const navLinks = document.getElementById(‘nav-links’);
-const allLinks = document.querySelectorAll(’.nav-center a’);
-const slider = document.getElementById(‘navSlider’);
+const navLinks  = document.getElementById(‘nav-links’);
+const navOverlay = document.getElementById(‘navOverlay’);
+const allLinks  = document.querySelectorAll(’.nav-center a’);
+const slider    = document.getElementById(‘navSlider’);
 
 function moveSlider(link) {
-const navRect = navLinks.getBoundingClientRect();
+const navRect  = navLinks.getBoundingClientRect();
 const linkRect = link.getBoundingClientRect();
-slider.style.left = (linkRect.left - navRect.left) + ‘px’;
+slider.style.left  = (linkRect.left - navRect.left) + ‘px’;
 slider.style.width = linkRect.width + ‘px’;
 }
 
-window.addEventListener(‘load’, () => {
-const active = document.querySelector(’.nav-center a.active’);
-if (active) moveSlider(active);
-});
+function openMobileNav() {
+hamburger.classList.add(‘open’);
+navLinks.classList.add(‘mobile-active’);
+navOverlay.style.display = ‘block’;
+requestAnimationFrame(() => navOverlay.classList.add(‘active’));
+}
 
-hamburger.addEventListener(‘click’, () => {
-hamburger.classList.toggle(‘open’);
-navLinks.classList.toggle(‘mobile-active’);
-document.body.classList.toggle(‘nav-open’);
-});
-
-// Close mobile nav when tapping the overlay
-document.addEventListener(‘click’, (e) => {
-if (document.body.classList.contains(‘nav-open’) && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+function closeMobileNav() {
 hamburger.classList.remove(‘open’);
 navLinks.classList.remove(‘mobile-active’);
-document.body.classList.remove(‘nav-open’);
+navOverlay.classList.remove(‘active’);
+setTimeout(() => { navOverlay.style.display = ‘none’; }, 400);
 }
+
+hamburger.addEventListener(‘click’, () => {
+navLinks.classList.contains(‘mobile-active’) ? closeMobileNav() : openMobileNav();
 });
+
+navOverlay.addEventListener(‘click’, closeMobileNav);
 
 allLinks.forEach(link => {
 link.addEventListener(‘click’, () => {
 allLinks.forEach(l => l.classList.remove(‘active’));
 link.classList.add(‘active’);
 moveSlider(link);
-hamburger.classList.remove(‘open’);
-navLinks.classList.remove(‘mobile-active’);
-document.body.classList.remove(‘nav-open’);
+closeMobileNav();
 });
+});
+
+window.addEventListener(‘load’, () => {
+const active = document.querySelector(’.nav-center a.active’);
+if (active) moveSlider(active);
 });
 
 // ===================== SCROLL REVEAL + PROGRESS BARS =====================
@@ -66,9 +68,9 @@ setTimeout(() => { bar.style.width = bar.dataset.progress + ‘%’; }, 200);
 document.querySelectorAll(’.reveal’).forEach(el => observer.observe(el));
 
 // ===================== SETTINGS & THEME =====================
-const settingsBtn = document.getElementById(‘settingsBtn’);
+const settingsBtn      = document.getElementById(‘settingsBtn’);
 const settingsDropdown = document.getElementById(‘settingsDropdown’);
-const themeFlash = document.getElementById(‘themeFlash’);
+const themeFlash       = document.getElementById(‘themeFlash’);
 
 settingsBtn.addEventListener(‘click’, (e) => {
 e.stopPropagation();
@@ -96,7 +98,6 @@ document.getElementById(‘themeDark’).classList.toggle(‘active’, !isLight
 localStorage.setItem(‘orbis-theme’, mode);
 }
 
-// Restore saved theme
 const savedTheme = localStorage.getItem(‘orbis-theme’);
 if (savedTheme === ‘light’) {
 document.body.classList.add(‘light-mode’);
@@ -105,7 +106,7 @@ document.getElementById(‘themeDark’).classList.remove(‘active’);
 }
 
 // ===================== MODAL =====================
-function openPrivacy() { document.getElementById(‘privacyModal’).style.display = ‘block’; }
+function openPrivacy()  { document.getElementById(‘privacyModal’).style.display = ‘block’; }
 function closePrivacy() { document.getElementById(‘privacyModal’).style.display = ‘none’; }
 window.addEventListener(‘click’, e => {
 if (e.target === document.getElementById(‘privacyModal’)) closePrivacy();
