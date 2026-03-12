@@ -115,19 +115,16 @@ function updateActiveNav() {
         if (matches) moveSlider(link);
     });
 }
-
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 
 // ===================== DISCORD LIVE MEMBER COUNT =====================
 (function fetchGTICCount() {
     const GUILD_ID = '1385408756464226414';
-    const TOTAL_MEMBERS = 700; // ← Update this manually when needed
+    const TOTAL_MEMBERS = 700; // ← Update manually when needed
     const membersEl = document.getElementById('gtic-members-text');
     const onlineEl  = document.getElementById('gtic-online-text');
     if (!membersEl || !onlineEl) return;
-
     membersEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
-
     fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
         .then(r => r.json())
         .then(data => {
@@ -151,26 +148,92 @@ function discordLogin() {
 
 function discordLogout() {
     sessionStorage.removeItem('discord_token');
+    sessionStorage.removeItem('discord_user');
     sessionStorage.removeItem('discord_state');
     document.getElementById('discordLoginBtn').style.display = '';
     document.getElementById('discordUser').style.display = 'none';
+    closeProfile();
 }
+
+const CONNECTION_ICONS = {
+    twitch:    'https://cdn.cdnlogo.com/logos/t/68/twitch.svg',
+    youtube:   'https://cdn.cdnlogo.com/logos/y/57/youtube-icon.svg',
+    twitter:   'https://cdn.cdnlogo.com/logos/t/96/twitter-icon.svg',
+    spotify:   'https://cdn.cdnlogo.com/logos/s/89/spotify.svg',
+    steam:     'https://cdn.cdnlogo.com/logos/s/56/steam.svg',
+    reddit:    'https://cdn.cdnlogo.com/logos/r/7/reddit-icon.svg',
+    github:    'https://cdn.cdnlogo.com/logos/g/15/github-icon.svg',
+    xbox:      'https://cdn.cdnlogo.com/logos/x/19/xbox.svg',
+    playstation: 'https://cdn.cdnlogo.com/logos/p/20/playstation.svg',
+    tiktok:    'https://cdn.cdnlogo.com/logos/t/75/tiktok-icon.svg',
+};
 
 async function fetchDiscordUser(token) {
     try {
-        const res = await fetch('https://discord.com/api/users/@me', {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-        const user = await res.json();
+        // Fetch user + connections in parallel
+        const [userRes, connRes] = await Promise.all([
+            fetch('https://discord.com/api/users/@me', { headers: { Authorization: `Bearer ${token}` } }),
+            fetch('https://discord.com/api/users/@me/connections', { headers: { Authorization: `Bearer ${token}` } })
+        ]);
+        const user = await userRes.json();
+        const connections = connRes.ok ? await connRes.json() : [];
+
         const avatar = user.avatar
-            ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+            ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`
             : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || 0) % 5}.png`;
+        const banner = user.banner
+            ? `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${user.banner.startsWith('a_') ? 'gif' : 'png'}?size=480`
+            : null;
+
+        // Store everything
+        sessionStorage.setItem('discord_user', JSON.stringify({ user, connections, avatar, banner }));
+
+        // Update nav pill
         document.getElementById('discordAvatar').src = avatar;
         document.getElementById('discordUsername').textContent = user.global_name || user.username;
         document.getElementById('discordLoginBtn').style.display = 'none';
         document.getElementById('discordUser').style.display = 'flex';
-    } catch(e) { console.warn('Discord user fetch failed', e); }
+    } catch(e) { console.warn('Discord fetch failed', e); }
 }
+
+function openProfile() {
+    const stored = sessionStorage.getItem('discord_user');
+    if (!stored) return;
+    const { user, connections, avatar, banner } = JSON.parse(stored);
+
+    // Banner
+    const bannerEl = document.getElementById('profileBanner');
+    bannerEl.style.background = banner
+        ? `url('${banner}') center/cover no-repeat`
+        : `linear-gradient(135deg, #5865F2, #3b2fcf)`;
+
+    // Avatar + name
+    document.getElementById('profileAvatar').src = avatar;
+    document.getElementById('profileDisplayName').textContent = user.global_name || user.username;
+    document.getElementById('profileUsername').textContent = `@${user.username}`;
+
+    // Email
+    document.getElementById('profileEmail').textContent = user.email || 'Not available';
+
+    // Connections
+    const connWrap = document.getElementById('profileConnections');
+    connWrap.innerHTML = '';
+    if (connections && connections.length) {
+        connections.forEach(conn => {
+            const pill = document.createElement('div');
+            pill.className = 'conn-pill';
+            const icon = CONNECTION_ICONS[conn.type];
+            pill.innerHTML = `${icon ? `<img src="${icon}" alt="${conn.type}">` : ''}${conn.name}`;
+            connWrap.appendChild(pill);
+        });
+    } else {
+        connWrap.innerHTML = '<span style="color:var(--text-muted);font-size:0.85rem;">No connections found</span>';
+    }
+
+    document.getElementById('profileModal').style.display = 'block';
+}
+
+function closeProfile() { document.getElementById('profileModal').style.display = 'none'; }
 
 (function handleDiscordCallback() {
     const hash = window.location.hash.slice(1);
@@ -192,4 +255,5 @@ function openPrivacy() { document.getElementById('privacyModal').style.display =
 function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
 window.addEventListener('click', e => {
     if (e.target === document.getElementById('privacyModal')) closePrivacy();
+    if (e.target === document.getElementById('profileModal')) closeProfile();
 });
