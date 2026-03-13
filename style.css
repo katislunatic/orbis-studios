@@ -379,19 +379,6 @@ footer { background: #030305; border-top: 1px solid var(--border); padding: 80px
     .nav-center::before { display: block; }
 }
 
-/* ===================== SCROLL PROGRESS BAR ===================== */
-#scroll-progress {
-    position: fixed;
-    left: 0; top: 0;
-    width: 3px;
-    height: 0%;
-    background: linear-gradient(to bottom, var(--cyan), rgba(0,174,239,0.4));
-    z-index: 9998;
-    border-radius: 0 2px 2px 0;
-    transition: height 0.1s linear;
-    box-shadow: 0 0 8px rgba(0,174,239,0.5);
-}
-
 /* ===================== REVEAL ===================== */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
