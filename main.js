@@ -159,18 +159,35 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 
 // ===================== DISCORD LIVE MEMBER COUNT =====================
+function animateBadgeCount(el, target, suffix, duration = 1200) {
+    const start = performance.now();
+    function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target).toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
 (function fetchGTICCount() {
     const GUILD_ID = '1385408756464226414';
     const TOTAL_MEMBERS = 700; // ← Update manually when needed
     const membersEl = document.getElementById('gtic-members-text');
     const onlineEl  = document.getElementById('gtic-online-text');
     if (!membersEl || !onlineEl) return;
-    membersEl.textContent = `${TOTAL_MEMBERS.toLocaleString()} Members`;
+
+    animateBadgeCount(membersEl, TOTAL_MEMBERS, ' Members');
+
     fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`)
         .then(r => r.json())
         .then(data => {
             const online = typeof data.presence_count === 'number' ? data.presence_count : null;
-            onlineEl.textContent = online !== null ? `${online.toLocaleString()} Online` : '— Online';
+            if (online !== null) {
+                animateBadgeCount(onlineEl, online, ' Online');
+            } else {
+                onlineEl.textContent = '— Online';
+            }
         })
         .catch(() => { onlineEl.textContent = '— Online'; });
 })();
@@ -196,6 +213,7 @@ function discordLogout() {
     document.getElementById('discordLoginBtnMobile').style.display = '';
     document.getElementById('discordUserMobile').style.display = 'none';
     closeProfile();
+    showToast('Logged out successfully.', 'info');
 }
 
 const CONNECTION_ICONS = {
@@ -242,7 +260,8 @@ async function fetchDiscordUser(token) {
         document.getElementById('discordUsernameMobile').textContent = user.global_name || user.username;
         document.getElementById('discordLoginBtnMobile').style.display = 'none';
         document.getElementById('discordUserMobile').style.display = 'flex';
-    } catch(e) { console.warn('Discord fetch failed', e); }
+        showToast(`Welcome, ${user.global_name || user.username}!`, 'success');
+    } catch(e) { console.warn('Discord fetch failed', e); showToast('Login failed. Please try again.', 'error'); }
 }
 
 function openProfile() {
@@ -310,6 +329,36 @@ function closeProfile() { document.getElementById('profileModal').style.display 
         if (saved) fetchDiscordUser(saved);
     }
 })();
+
+// ===================== TOAST NOTIFICATIONS =====================
+function showToast(message, type = 'success', duration = 3500) {
+    const container = document.getElementById('toast-container') || (() => {
+        const el = document.createElement('div');
+        el.id = 'toast-container';
+        document.body.appendChild(el);
+        return el;
+    })();
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    const icons = {
+        success: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+        error:   `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+        info:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+    };
+
+    toast.innerHTML = `<span class="toast-icon">${icons[type] || icons.info}</span><span class="toast-msg">${message}</span>`;
+    container.appendChild(toast);
+
+    // Trigger enter animation
+    requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('toast-show')));
+
+    setTimeout(() => {
+        toast.classList.remove('toast-show');
+        toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+    }, duration);
+}
 
 // ===================== MODAL =====================
 function openPrivacy() { document.getElementById('privacyModal').style.display = 'block'; }
