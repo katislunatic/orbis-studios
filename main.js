@@ -90,16 +90,7 @@ const statObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stat-item').forEach(el => statObserver.observe(el));
 
-// ===================== SCROLL PROGRESS INDICATOR =====================
-const scrollProgress = document.createElement('div');
-scrollProgress.id = 'scroll-progress';
-document.body.appendChild(scrollProgress);
 
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    scrollProgress.style.height = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-}, { passive: true });
 
 // ===================== SETTINGS & THEME =====================
 const settingsBtn = document.getElementById('settingsBtn');
