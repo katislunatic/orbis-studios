@@ -59,6 +59,48 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ===================== ANIMATED STAT COUNTERS =====================
+function animateCounter(el, target, suffix, duration) {
+    const startTime = performance.now();
+    function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        const current = Math.floor(ease * target);
+        let display;
+        if (target >= 1000000000)      display = Math.floor(current / 1000000000) + 'B';
+        else if (target >= 1000000)    display = Math.floor(current / 1000000) + 'M';
+        else                           display = current.toString();
+        el.textContent = display + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const numEl = e.target.querySelector('.stat-num');
+        if (!numEl || numEl.dataset.animated) return;
+        numEl.dataset.animated = 'true';
+        animateCounter(numEl, parseFloat(numEl.dataset.value), numEl.dataset.suffix || '', 2000);
+        statObserver.unobserve(e.target);
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-item').forEach(el => statObserver.observe(el));
+
+// ===================== SCROLL PROGRESS INDICATOR =====================
+const scrollProgress = document.createElement('div');
+scrollProgress.id = 'scroll-progress';
+document.body.appendChild(scrollProgress);
+
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.height = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+}, { passive: true });
+
 // ===================== SETTINGS & THEME =====================
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsDropdown = document.getElementById('settingsDropdown');
