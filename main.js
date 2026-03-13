@@ -37,6 +37,11 @@ allLinks.forEach(link => {
         moveSlider(link);
         hamburger.classList.remove('open');
         navLinks.classList.remove('mobile-active');
+
+        // Pause ScrollSpy so it doesn't fight the click during smooth scroll
+        spyPaused = true;
+        clearTimeout(window._spyResumeTimer);
+        window._spyResumeTimer = setTimeout(() => { spyPaused = false; }, 1000);
     });
 });
 
@@ -103,7 +108,10 @@ const spySections = [
     { id: 'team',     el: document.getElementById('team') },
 ];
 
+let spyPaused = false;
+
 function updateActiveNav() {
+    if (spyPaused) return;
     let current = '';
     spySections.forEach(({ id, el }) => {
         if (el && el.getBoundingClientRect().top <= 80) current = id;
