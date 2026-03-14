@@ -360,10 +360,24 @@ function showToast(message, type = 'success', duration = 3500) {
     }, duration);
 }
 
+// ===================== GAME MODAL =====================
+function openGame() {
+    const modal = document.getElementById('gameModal');
+    document.getElementById('gameFrame').src = 'https://floor-lied.netlify.app/';
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+function closeGame() {
+    document.getElementById('gameModal').style.display = 'none';
+    document.getElementById('gameFrame').src = '';
+    document.body.style.overflow = '';
+}
+
 // ===================== MODAL =====================
 function openPrivacy() { document.getElementById('privacyModal').style.display = 'block'; }
 function closePrivacy() { document.getElementById('privacyModal').style.display = 'none'; }
 window.addEventListener('click', e => {
     if (e.target === document.getElementById('privacyModal')) closePrivacy();
     if (e.target === document.getElementById('profileModal')) closeProfile();
+    if (e.target === document.getElementById('gameModal')) closeGame();
 });
