@@ -179,6 +179,23 @@
                 </div>
             </div>
         </div>
+        <div class="work-card reveal reveal-delay-3">
+            <div class="work-thumb">
+                <img src="floor_lied.png" alt="Floor Lied">
+            </div>
+            <div class="work-body">
+                <p class="work-tag"><span></span>2D Platformer &nbsp;·&nbsp; Game</p>
+                <h3>Floor Lied</h3>
+                <p>Floor Lied is a 2D platformer where the floor lies, the door runs, and the game cheats. 25 levels of traps designed to punish your instincts. Trust nothing.</p>
+                <div class="work-footer">
+                    <span class="work-badge badge-blue"><span class="badge-dot dot-orange"></span>In Development</span>
+                    <div class="work-actions">
+                        <a href="https://floor-lied.netlify.app/" target="_blank" class="btn-sm">Website</a>
+                        <button class="btn-sm btn-play" onclick="openGame()">&#9654; Play</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -354,6 +371,22 @@
             </div>
         </div>
         <button class="discord-logout-full" onclick="discordLogout()">Log Out</button>
+    </div>
+</div>
+
+<!-- GAME MODAL -->
+<div id="gameModal" class="modal game-modal">
+    <div class="game-modal-box">
+        <div class="game-modal-header">
+            <span class="game-modal-title">Floor Lied</span>
+            <div class="game-modal-actions">
+                <a href="https://floor-lied.netlify.app/" target="_blank" class="btn-sm">Open Full Site ↗</a>
+                <button class="modal-close" onclick="closeGame()">×</button>
+            </div>
+        </div>
+        <div class="game-frame-wrap">
+            <iframe id="gameFrame" src="" allowfullscreen></iframe>
+        </div>
     </div>
 </div>
 
