@@ -361,9 +361,11 @@ function showToast(message, type = 'success', duration = 3500) {
 }
 
 // ===================== GAME MODAL =====================
-function openGame() {
+function openGame(url, title) {
     const modal = document.getElementById('gameModal');
-    document.getElementById('gameFrame').src = 'https://floor-lied.netlify.app/';
+    document.getElementById('gameFrame').src = url;
+    document.getElementById('gameModalTitle').textContent = title;
+    document.getElementById('gameModalLink').href = url;
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
